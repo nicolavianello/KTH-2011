@@ -682,8 +682,59 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Local Intermittency Measurements}
+  \begin{itemize}
+\item Intermittency is due to the presence of strong, sporadic fluctuations
+\item The \textcolor{ta3chameleon}{\texttt{Local Intermittency
+      Measurements}} is a method, based on wavelet, which identifies in time and
+  scales this fluctuations {\footnotesize\parencite{Antoni:2001tm}}
+  \item The method is based on the following:
+\begin{equation*}
+\{w(t,\tau)\} = \{w_e(t,\tau)\}\oplus \{w_g(t,\tau)\} \quad
+\text{with} \,
+F(\tau)=\frac{\langle w_g(t,\tau)^4\rangle}{[\langle w_g(t,\tau)^2]^2}
+= 3
+\end{equation*}
+\item The typical fluctuations may be deriven using
+  \textcolor{ta3chameleon}{\texttt{Conditional Average Procedure}},
+  i.e. averaging different time window of the signal, each 
+  centered around the occurrence of an
+  \alert{Intermittent Events} or \alert{blobs}
 
-\begin{frame}{Bibliography}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Example of structures}
+\begin{itemize}
+\item Conditional average may be applied to different signals using
+  the same trigger
+\end{itemize}
+
+\only<1>{
+\centering{\includegraphics[height=7.5cm]{strutturaMediaConVpNuova}}
+}
+\only<2>{
+\begin{columns}[c]
+\begin{column}{0.5\textwidth}
+\includegraphics[height=4cm]{AlfvenAndOdograms}
+\end{column}
+\begin{column}{0.5\textwidth}
+\includegraphics[height=4cm]{vorticityCurrent}
+\end{column}
+
+
+\end{columns}
+\begin{itemize}
+\item Example of \textcolor{ta3chameleon}{\texttt{Drift-Kinetic
+      Alf\'en vortices}} {\footnotesize\parencite{Vianello:2010tv,Martines:2009im}}
+\end{itemize}
+}
+
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Bibliography}
 \printbibliography
 \end{frame}
 
