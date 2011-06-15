@@ -62,7 +62,7 @@
 \vspace*{\stretch{1.5}}
 \only<1-5>{
 Diagnostics provides information with different time and spatial resolution
-\setbeamercovered{transparent=30}
+\setbeamercovered{transparent=10}
 \begin{enumerate}[<+-|alert@+>]
 \item Measurements coming from a single point  
 \item Spatially distributed arrays of measurements (resolving portion
@@ -182,7 +182,7 @@ frequency domain representation of the signal
 \end{frame}
 
 \begin{frame}{Discrete Fourier Transform}
-\setbeamercovered{transparent=30}
+\setbeamercovered{transparent=10}
 \begin{itemize}[<+->]
 \item Given the discretiness of the sampling, also the corresponding
   Fourier transform will be discrete in the Fourier space.
@@ -497,9 +497,33 @@ f\tau}df = \frac{2}{B}\int_0^{+\infty}\Re[S_{nE}(f)]df
 \only<4>{
 \centering{\includegraphics[height=3.5cm]{flux_vs_k}}
 }
-
 \end{itemize}
 \end{frame}
+
+
+\begin{frame}{More than transport of particles}
+\onslide<1->{\begin{itemize}
+\item Similar method may be used for the determination of the
+  \emph{Reynolds stress} $\langle\tilde{v}_r\tilde{v}_{\perp}\rangle$
+  which play a role in the momentum generation for both Tokamak and
+  RFPs as $\partial_t(V_{\phi}) \propto
+  -\partial_r\langle\tilde{v}_r\tilde{v}_{\phi}\rangle + \ldots$ {\footnotesize
+  (see e.g. \parencite{Vianello:2005hf,Vianello:2005dt,Vianello:2006bn})}
+\end{itemize}
+}
+\only<2>{
+\centering{\includegraphics[height=4cm]{ErsFlux}}
+
+}
+\only<3>{
+\centering{\includegraphics[height=4cm]{ErsFlux_vsk}}
+
+}
+
+
+\end{frame}
+
+
 \begin{frame}{The wavenumber-Frequency Spectrum}
 \begin{itemize}[<+->]
 \item In general, we have a turbulent medium, with different wave
@@ -562,6 +586,105 @@ I_p[k_n^{j}] =
 
 \end{itemize}
 }
+\end{frame}
+
+\begin{frame}{Beyond Fourier: Wavelet transform}
+\setbeamercovered{transparent=10}
+\begin{itemize}[<+->]
+\item The Fourier decomposition uses trigonometric functions as
+  orthogonal basis
+\item They have the drawback that these functions oscillates forevere,
+  i.e. the information content of a generic function is spread over
+  all the spectral component
+\item Thus Fourier decomposition is not suitable for processes highly
+  localized in time/space. We can use
+  \textcolor{tachameleon}{\texttt{Wavelet Transform}}{\footnotesize \parencite{Farge:1992un}}
+\item A Wavelet is a function $\psi\in \mathrm{L}^2(\mathbb{R})$ which
+  satisfies the admissibility condition
+  $C_{\psi}-\int_{-\infty}^{+\infty}\frac{|\hat{\psi}(\omega)|^2}{|\omega|}d\omega
+  < \infty$ which means that $\psi$ is a zero mean function
+  $\int_{\infty}^{\infty}\psi(t)dt =0$
+\item Defining time-frequency atoms as
+  $\psi_{s,\tau}=\frac{1}{\sqrt{\tau}}\psi\left(\frac{t-s}{\tau}\right)$ the
+  \textcolor{tachameleon}{\texttt{Continuous Wavelet Transform}} is
+  defined as 
+\begin{equation*}
+w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t-s}{\tau}\right)dt
+\end{equation*}
+\end{itemize}
+\end{frame}
+\begin{frame}{Choice \& type of Wavelet}
+\only<1-4>{  \begin{itemize}
+  \item Wavelets to be chosen according to different criteria:
+\begin{description}[<+->]
+\item[(i)]  Orthogonal or nonorthogonal, according to the type of
+  basis uses. Nonorthogonal are redunant at large scales, where
+  wavelet spectrum at adjacent times is highly correlated. They are
+  useful in time series analysis
+\item[(ii)] Complex or real. Complex wavelet useful also when phase
+  relation has to be considered
+\item[(iii)] Width: The resolution is determined by the balance between
+  width in real and scale space
+\item[(iv)] Shape: The shape of the wavelet should reflect the
+  use. For example for the studies of variation into the signal a
+  boxcar-like function is more suitable.
+\end{description}
+\end{itemize}}
+\only<5>{
+\begin{itemize}
+\item Example of different types of wavelet \parencite{Mallat:1999te}
+
+\centering{\includegraphics[height=7cm]{various_wavelet}}
+\end{itemize}
+
+}
+\end{frame}
+
+
+\begin{frame}{Wavelet application}
+\begin{itemize}
+\item In analogy to Fourier we can define Wavelet Cross power spectrum
+  and Corresponding phase spectrum (well localized in time/frequency)
+
+\centering{\includegraphics[height=3.5cm]{wavelet-phase}}
+
+\item Phase spectrum between density and potential varies because of
+  varioation of the shear $\rightarrow$ responsible for transport
+  reduction {\footnotesize\parencite{Antoni:2000bn}}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Wavelet for turbulence analysis}
+%\setbeamercovered{transparent=10} 
+ \begin{itemize}[<+->]
+  \item It can be shown that wavelet coefficient exhibits similar
+    scaling properties as the fluctuations of the signals at a given
+    scales
+\begin{equation*}
+\delta_{\tau} f = f(t+\tau)-f(t) \sim \tau^h \Rightarrow |w(t,\tau)|\sim\tau^{h+1/2}
+\end{equation*}
+\item Thus wavelet coefficient may be used for the study of the
+  scaling properties of the fluctuation
+\only<3>{\item Easy way to compute the
+  \textcolor{tachameleon}{\texttt{Probability Distribution Function}}
+  of normalized flutuations $C(t,\tau)=\frac{w(t,\tau)-\langle
+    w(t,\tau)\rangle}{\sigma_{\tau}}$. For
+  \textcolor{taskyblue}{self-similar} fluctuations, these should
+  collapse to a single form}
+
+\item \textcolor{tascarletred}{\textbf{Revealing non
+      self-similariy i.e. Intermittency}}
+
+\centering{\includegraphics[height=4.11cm]{pdf_fluct}}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Bibliography}
+\printbibliography
 \end{frame}
 
 \end{document}
