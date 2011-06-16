@@ -1,0 +1,43 @@
+* Introduction
+** Lecture
+   - Tex files containing the test Lecture to be held on Wednesday the 22, titled /*Examples of experimental data analysis methods for Tokamak and RFP" (examples chosen by the applicants*/
+   - Graphics included in the presentation are in pdf_box
+   - Programs used for the creation of the graphics are both in idl/ and python/ directory
+
+
+
+** Activites
+   Presentation on current activities (both scientific and pedagocal) and plans for the future both scientific and pedagogical
+
+*** Outline
+   1. Personal research interest [1 Slides]
+      1) Personal interest in turbulence in magnetized plasmas with emphasis in Fusion Plasma 
+      2) I've been involved in the studies of electromagnetic turbulence, using primarly local measurement (probes both magnetic and eletrostatic)
+      3) Active collaboration with a wider community (including astrophysical & basic plasmas) in order to share tools for the analysis and underlying physics
+   2. Issue: Electrostatic induced Particle Flux [1 Slides]
+      1) Particle flux induced by electrostatic fluctuations, and modification induced by applied shear
+   3. Issue: Turbulence/Intermittency & lack of Self-similarity [2 Slides ]
+      1) Evidence of intermittency observed as lack-of-self-similarity
+      2) Inconsistency with SOC processes
+   4. Issue: Coherent structures & filaments [2 Slides]
+      1) Transport induced by coherent structures
+      2) Filaments in 3 machines plus planned experiment
+   5. Issue: Spontaneous Helical Plasmas [2 Slides]
+      1) Helical flow & dynamo associated (mappa del flow & histogramma)
+      2) Role of the flow in the high density collapse of an RFP
+         discharges (pattern di velocita ad alta densita)
+   6. Issue: pedagogical [1 Slides]
+      1) 2 Batchelor Thesis plus 1 Master thesis: 
+	 - Activities on the Filaments (ASDEX & RFX)
+	 - Activities on the role of m=0 island in modyfing the
+           properties of edge region
+	 - Activites on the phase relation between velocity and
+           magnetic perturbation during high density discharges
+   7. Issue: Future activities [1 Slides]
+      1) Fast ions
+      2) Reconnection (sinergy with plasma science)
+      3) Momentum (also considering the effect of magnetic
+         perturbation on the momentum)
+
+
+

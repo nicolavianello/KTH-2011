@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from matplotlib import rc
 rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
-rc("font", size=15)
+rc("font", size=22)
 from numpy import fft
 # generate the basis of time
 t=np.arange(-10,10,0.0001)
