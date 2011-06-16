@@ -47,8 +47,7 @@
 
 \setbeamercolor{footline extra}{fg=structure.fg}% for instance
 
-\title{Fluctuation data analysis in Fusion Relevant Plasmas\\
-{\small Extracting information on relevant underlying dynamics}}
+\title{Fluctuation data analysis in Fusion Relevant Plasmas}
 \author{N. Vianello }
 \date{22 June 2011}
 
@@ -173,9 +172,9 @@ frequency domain representation of the signal
 \item The presence of frequency higher than the Nyquist frequency may
   lead to the presence of spurious frequency
 \end{itemize}
-\centering{\includegraphics[width=0.6\textwidth]{aliasing}}
+\centering{\includegraphics[height=4cm]{aliasing}}
 \begin{itemize}
-\item A 9 kHz sine if sampled at 10 kHz exhibits a spurious 1 kHz oscillation
+\item A 9 kHz cosine if sampled at 10 kHz exhibits a spurious 1 kHz oscillation
 \end{itemize}
 }
 
@@ -191,7 +190,7 @@ the Fourier representation of a box function $\rightarrow \mathrm{sinc}(x) =
   \sin(x)/x$ function as shown, which \alert{leaking} some power from
   one frequency bin to the adjacents ones.
 
-\centering{\includegraphics[width=0.5\textwidth]{box-function}}
+\centering{\includegraphics[height=5cm]{box-function}}
 
 \end{itemize}
 
@@ -204,7 +203,7 @@ the Fourier representation of a box function $\rightarrow \mathrm{sinc}(x) =
   \emph{Hanning window}: $u_h(t) = \frac{1}{2}(1-\cos(2\pi
   t/T))$ for $0\leq t\leq T$ and 0 otherwise. 
 
-\centering{\includegraphics[width=0.5\textwidth]{Hanning}}
+\centering{\includegraphics[height=5cm]{Hanning}}
 
 \end{itemize}
 }
@@ -246,9 +245,13 @@ C_j =
 
 \begin{frame}{Auto-correlation: practical use}
 \begin{itemize}
-\item Define the \textcolor{ta3plum}{\emph{Auto-correlation time}} of
-  a turbulent field such as the potential
-\item \textbf{Inserisci figura con autocorrelazione di un potenziale }
+\item Define the \textcolor{ta3chameleon}{\texttt{Auto-correlation time}} of
+  a turbulent field such as the potential: $R(\tau_c)=\frac{\text{max}(R(\tau))}{e}$
+
+\begin{center}
+\includegraphics[height=5cm]{Auto-correlation20367}
+\end{center}
+
 \end{itemize}
 \end{frame}
 

@@ -20,7 +20,7 @@ pha = sp.phase/!pi
 fr = sp.freq
 co = sp.coher
 eps_box = $
-   '~/Documents/RFX/Documenti/KTH-2011/22Giugno2011/Lezioni/eps_box/'
+   '~/Documents/RFX/Documenti/KTH-2011/22Giugno2011/Lecture/eps_box/'
 fname = eps_box+'PhaseCoherenceEn-Vp'+strn(fix(shot))+'.eps'
 opstr='File '+fname+' aperto '
 clstr='File '+fname+' chiuso '
