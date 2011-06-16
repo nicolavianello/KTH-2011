@@ -7,7 +7,7 @@
 \usepackage{rfxcolor}
 \usepackage{pgf}
 \usepackage{tikz}
-\usepackage[bibstyle=authoryear-comp,citestyle=authoryear-comp,labelyear=true,maxnames=1]{biblatex}
+\usepackage[bibstyle=numeric-comp,citestyle=authoryear-comp,labelyear=true,maxnames=1]{biblatex}
 \bibliography{biblio}
 \renewcommand*{\bibfont}{\footnotesize}
 %\renewcommand*{\citefont}{\footnotesize}
@@ -60,7 +60,6 @@
 \begin{frame}
 \frametitle{Motivation \& Outline}
 \vspace*{\stretch{1.5}}
-\only<1-5>{
 Diagnostics provides information with different time and spatial resolution
 \setbeamercovered{transparent=10}
 \begin{enumerate}[<+-|alert@+>]
@@ -69,18 +68,14 @@ Diagnostics provides information with different time and spatial resolution
   of the plasma or entire torus)
 \item line integrated measurements (single Line Of Sight (LoS)) 
 \item Arrays of LoS (examples are tomographic reconstruction)
-\end{enumerate}
-}
-
-\only<5>{
-\alert{We will focus on analysis technique suitable for
+\item We will focus on analysis technique suitable for
   single-point/multi point measurements, extracting information on
-  spatial/temporal dynamics}
-
-}
+  spatial/temporal dynamics
+\end{enumerate}
 \end{frame}
+
 \begin{frame}
-\frametitle{ Continuos and Discrete Fourier transform}
+\frametitle{ The needs for the Fourier transform}
 \begin{itemize}[<+-|alert@+>]
 \item Generally theories are developed in the frequency/wavevector
   domains ($\omega,\mathbf{k}$) rather than in time/space ($t,r$)
@@ -93,60 +88,70 @@ Diagnostics provides information with different time and spatial resolution
 \end{equation*}
 \end{itemize}
 \onslide<3>{
-
 \begin{block}{}
-Some remarks on basic Fourier Transform and its discrete counterpart
+\begin{itemize}
+\item Some remarks on basic Fourier Transform and its discrete counterpart
 the Discrete Fourier Transform are mandatory
+\end{itemize}
 \end{block}
 }
 \end{frame}
 
 \begin{frame}{Continuous and Discrete Fourier transform 2}
-The \textcolor{taorange}{Direct} and \textcolor{lightcyan}{Inverse}
+\begin{itemize}[<+->]
+\item The \textcolor{taorange}{Direct} and \textcolor{cyan}{Inverse}
 fourier transform of a generic function of time $x(t)$ is defined as :
 {\small \begin{equation*}
 \tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
 $X(f) = \int_{-\infty}^{+\infty}x(t)e^{-2\pi i f t}\mathrm{d}t$};} \qquad
-\tikz[baseline=(t1.base)]{\node[fill=lightcyan](t1){%
+\tikz[baseline=(t1.base)]{\node[fill=cyan](t1){%
 $x(t) = \int_{-\infty}^{+\infty}X(f)e^{2\pi i f t}\mathrm{d}f$};}
 \end{equation*}}
-Various theorems may be applied to FT
+
+\item In the case of discrete signals $x_n=x(n\Delta t)$ with $0\leq n
+  \leq N-1$, sampled at frequency $f_c=\frac{1}{\Delta t}$ we have the
+  corresponding \textcolor{taorange}{Direct} and \textcolor{cyan}{Inverse}
+  Discrete Fourier transform, then defined as 
+{\small \begin{equation*}
+\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
+$X_n = \frac{1}{N}\sum_{k=0}^{N-1}x_ke^{-2\pi kn/N}$};} \qquad
+\tikz[baseline=(t1.base)]{\node[fill=cyan](t1){%
+$x_k = \frac{1}{N}\sum_{n=-N/2}^{N/2}X_ne^{2\pi kn/N}$};}
+\end{equation*}}
+
+\only<3>{\item The \textcolor{ta3chameleon}{\texttt{Sampling Theorem}}
+  {\footnotesize \parencite{Bracewell:1999ua}} ensure that 
+\textcolor{rfxcyan}{A function whose
+    Fourier transform is zero for $f>f_c$ is fully specified by values
+  spaced at equal intervals not exceeding $\frac{1}{2}f_c^{-1}$}}
+\only<4>{\item The \textcolor{ta3chameleon}{\texttt{Nyquist
+      Frequency}} 
+  $f_N = \frac{1}{2\Delta t}$, 
+  defines the
+  maximum frequency which can be properly resolved, or equivalently
+  given the frequency of the system we would like to investigate, we
+  had to sample at least at twice the values of this frequency.}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Properties of Fourier transform}
+\begin{itemize}
+\item Various theorems may be applied to
+  FT \parencite{Bracewell:1999ua} among which we cite:
+
 \only<2>{
-\begin{theorem}{\underline{Similarity Theorem:}}
-If $x(t)$ has the Fourier transform $X(f)$ then $x(at)$ has the
-Fourier Transform $|a|^{-1}F(f/a)$
-\end{theorem}
-\textcolor{taplum}{This will be useful in the analysis of scaling properties of the fluctuations}
-}
-
-\only<3>{
-\begin{Theorem}{\underline{Addition Theorem:}}
-If $x(t)$ and $g(t)$ have FT respectively $X(f)$ and $G(f)$ then
-$x(t)+g(t)$ has Fourier transform $X(f)+G(f)$
-\end{Theorem}
-\textcolor{taplum}{The linearity of Fourier transform allows an easy
-  treatment of linear equation in the Fourier domain}
-}
-
-\only<4>{
-\begin{Theorem}{\underline{Shift theorem:}}
-If $x(t)$ and $g(t)$ have FT respectively $X(f)$ then $x(t-a)$ has
-Fourier transform $e^{-2\pi i af}X(f)$
-\end{Theorem}
-}
-
-\only<5>{
 \begin{theorem}{\underline{Convolution theorem:}}
 If $x(t)$ and $g(t)$ have FT respectively equal to $X(f)$ and $G(f)$
 the convolution of the two function $h(t) = \int_{-\infty}^{+\infty}x(t^{'})g(t-t^{'})\mathrm{d}t^{'}$
 is equal to $X(f)G(f)$
 \end{theorem}
-The importance of the convolution equation resides on the fact that it
+\item The importance of the convolution equation resides on the fact that it
 allows treatment of non-linearities as the term
 $\mathbf{v}\cdot\nabla\mathbf{v}$ in the Navier-Stokes equations 
 }
 
-\only<6>{
+\only<3>{
 \begin{theorem}{\underline{Rayleigh's Theorem}}
 The integral of squared modulus of a function is equalt to the
 integral of the squared modulus of its spectrum, i.e:
@@ -155,57 +160,12 @@ integral of the squared modulus of its spectrum, i.e:
 \int_{-\infty}^{+\infty}|F(f)|^2\mathrm{d}f
 \end{equation*}
 \end{theorem}
-This is equivalent to an energy conservation law for the time or
+\item This is equivalent to an energy conservation law for the time or
 frequency domain representation of the signal
 }
-\end{frame}
-
-\begin{frame}{Discrete Signals}
-\begin{itemize}[<+-|alert@+>]
-\item In practice, signals are acquired using analog-to-digital
-  converters, so discrete signals have to be analize
-\item In discrete signal, a continuous functin$x(t)$ results in a set
-  of $N$ discrete values of the form $x_n = x(n\Delta t)$ with $n=0,\ldots,N-1$
-\item The total duration of the signal is equal to $T=N\Delta t$
-  whereas the \emph{frequency sampling} is $f_s = \frac{1}{\Delta
-    t}$.
-\item A foundamental results of signal analysis is \emph{Sampling
-    Theorem} which states that \textcolor{rfxcyan}{A function whose
-    Fourier transform is zero for $f>f_c$ is fully specified by values
-  spaced at equal intervals not exceeding $\frac{1}{2}f_c^{-1}$}
-\item The \emph{Nyquist Frequency} $f_N = \frac{1}{2\Delta t}$, 
-  equivalent to half ot the sampling frequency, thus define the
-  maximum frequency which can be properly resolved, or equivalently
-  given the frequency of the system we would like to investigate, we
-  had to sample at least at twice the values of this frequency.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Discrete Fourier Transform}
-\setbeamercovered{transparent=10}
-\begin{itemize}[<+->]
-\item Given the discretiness of the sampling, also the corresponding
-  Fourier transform will be discrete in the Fourier space.
-\item The basic concept of DFT resides on the fact that the algorithm
-  applied on an $N$-sampled data, will produces an information on
-  $N$ frequencies, assuming that the information is conserved
-\item The Fourier transform of a digitized $N$-sampled data will be of
-  the form $f_n = n\Delta f$ with (if $N$ is even) $ -\frac{N}{2}\leq
-  n \leq \frac{N}{2}$. The frequency resolution, in order to span all
-  the allowed frequency range will be of the form $\Delta f =
-  \frac{1}{T} = \frac{1}{\Delta t}$
-\item The \textcolor{taorange}{Direct} and \textcolor{cyan}{Inverse}
-  Discrete Fourier transform are then defined as 
-{\small \begin{equation*}
-\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
-$X_n = \frac{1}{N}\sum_{k=0}^{N-1}x_ke^{-2\pi kn/N}$};} \qquad
-\tikz[baseline=(t1.base)]{\node[fill=cyan](t1){%
-$x_k = \frac{1}{N}\sum_{n=-N/2}^{N/2}X_ne^{2\pi kn/N}$};}
-\end{equation*}}
-
-\end{itemize}
-
-\end{frame}
 
 \begin{frame}{Aliasing, leaking and windowing}
 \only<1>{
@@ -221,15 +181,14 @@ $x_k = \frac{1}{N}\sum_{n=-N/2}^{N/2}X_ne^{2\pi kn/N}$};}
 
 \only<2>{\small 
 \begin{itemize}
-\item The finite extension of the measurements, acquired for a given period
-$T$ is equivalent to the convolution of the signal with a box
-function $G(t)$ with domain $0\leq t \leq T$, i.e. $G(t)=1 $if$
+\item Actually signals are acquired for a given period
+$T\rightarrow$ equivalent to the convolution with a box
+function $G(t)$ with domain $0\leq t \leq T$, i.e. $G(t)=1$ if $
 0\leq t \leq T$ 0 otherwise
-\item According the theorems for the Fourier transform (which can be
-  applied also for discrete transform) this is equivalent in the
-  Fouirer space to the moltiplication of the of the fourier transform
-  but the Fourier representation of a box function is $\mathrm{sinc}(x) =
-  \sin(x)/x$ function as shown, which\alert{leaking} some power from
+\item In the
+  Fouirer space equivalent to the moltiplication with 
+the Fourier representation of a box function $\rightarrow \mathrm{sinc}(x) =
+  \sin(x)/x$ function as shown, which \alert{leaking} some power from
   one frequency bin to the adjacents ones.
 
 \centering{\includegraphics[width=0.5\textwidth]{box-function}}
@@ -240,11 +199,10 @@ function $G(t)$ with domain $0\leq t \leq T$, i.e. $G(t)=1 $if$
 
 \only<3>{
 \begin{itemize}
-\item Solution to the lakage problem is multiplying data by an
+\item Solution to the leakage: moltiplication with an
   appropriate window function which reduces the lobes as the
-  \emph{Hanning window} defined as $u_h(t) = \frac{1}{2}(1-\cos(2\pi
-  t/T))$ for $0\leq t\leq T$ and 0 otherwise. Its behavior in real and
-  fourire space is the following 
+  \emph{Hanning window}: $u_h(t) = \frac{1}{2}(1-\cos(2\pi
+  t/T))$ for $0\leq t\leq T$ and 0 otherwise. 
 
 \centering{\includegraphics[width=0.5\textwidth]{Hanning}}
 
@@ -254,18 +212,19 @@ function $G(t)$ with domain $0\leq t \leq T$, i.e. $G(t)=1 $if$
 
 \begin{frame}{Single Point: the autocorrelation function}
 \begin{itemize}
-\item We know from the statistics a random process $x(t)$ is
+\item A random process $x(t)$ is
   completely described by its moments, which are the average over the
   probability distribution function 
 \begin{equation*}
-E|x(t)| \quad
-E|x(t_1)x(t_2)| \quad
-E|x(t_1)x(t_2)x(t_3)| \quad
+E[x(t)] \quad
+E[x(t_1)x(t_2)] \quad
+E[x(t_1)x(t_2)x(t_3)] \quad
 \ldots
 \end{equation*}
-\item The \textcolor{taskyblue}{Auto-correlation function}, i.e. 
-  the second order momentum of the distribution, or the  \textcolor{tachameleon}{autocovariance
-  function }
+\item We definte \textcolor{taskyblue}{\texttt{Auto-correlation function}}, i.e. 
+  the second order momentum of the distribution, or the  
+\textcolor{tachameleon}{\texttt{autocovariance
+  function}}
 {\small \begin{equation*}
 \tikz[baseline=(t1.base)]{\node[fill=taskyblue](t1){%
 $R(\tau)= E|x(t)x(t-\tau)|$};} \qquad
@@ -273,7 +232,7 @@ $R(\tau)= E|x(t)x(t-\tau)|$};} \qquad
 $C(\tau) = E|(x(t)-m)(x(t-\tau)-m)|$};}
 \end{equation*}}
 being $m$ the average of $x(t)$
-\item The \textcolor{ta3orange}{Auto-correlation coefficient factor}
+\item The \textcolor{ta3orange}{\texttt{Auto-correlation coefficient factor}}
   is defined as $\rho(\tau)=C(\tau)/C(0)$
 \item For digitized signals with $N$ samples the estimator of
   $C(\tau)$ is defined as 
@@ -297,15 +256,14 @@ C_j =
 \begin{itemize}[<+->]
 \item The \textcolor{ta3skyblue}{Power spectrum $S(f)$} is defined as the
   Fourier transform of the Autocorrelation-function.
-\item It can be demonstrated that
-  $E[|x(t)|^2]=\int_{-\infty}^{+\infty}S(f)dt$, i.e. the Power
-  spectrum describe the frequency distribution of the \emph{power of
-    the signal.}
-\item In the real case, with limited temporal acquisition of a signal $x_T(t)$
-  the ensemble average of its \textcolor{ta3skyblue}{periodogram}
+\item It describes the frequency distribution of the \emph{power of
+    the signal.} i.e.
+  $E[|x(t)|^2]=\int_{-\infty}^{+\infty}S(f)dt$
+\item With limited temporal acquisition of a signal $x_T(t)$
+  the ensemble average of its \textcolor{ta3skyblue}{\texttt{periodogram}}
   tends to the power spectrum
-  $\frac{|FT(x_T(t))|^2}{T}\xrightarrow[T\rightarrow \infty]{} S(f)$
-\item From a practial point of view, we divide
+  $\frac{E[FT(x_T(t)) ^2]}{T}\xrightarrow[T\rightarrow \infty]{} S(f)$
+\item Practically, we divide
   signals into $M$ slices, assumed as indipendent realization of the
   same stochastic process and we compute
 \begin{equation*}
@@ -321,49 +279,46 @@ C_j =
 \end{frame}
 
 \begin{frame}{Power spectrum: practical use}
-\begin{columns}[b]
-\begin{column}{.5\textwidth}
+\only<1-2>{\begin{columns}[c]
+\begin{column}{.4\textwidth}
 \begin{itemize}
-\item \textcolor{ta3scarletred}{Mode identification at a given
-    frequency {\footnotesize \parencite{Conway:2005gq}}}
+{\small \item \textcolor{ta3scarletred}{Mode identification at a given
+    frequency {\footnotesize \parencite{Conway:2005gq}}}}
 \end{itemize}
 \end{column}
-\begin{column}{0.5\textwidth}
-\centering{\includegraphics[width=0.9\textwidth]{gam-conway}}
+\begin{column}{0.6\textwidth}
+\centering{\includegraphics[width=0.73\textwidth]{gam-conway}}
 %{\footnotesize G. Conway PPCF }
 \end{column}
 \end{columns}
-
-\vspace{0.5cm}
-
-\begin{columns}[b]
-\begin{column}{0.5\textwidth}
-\includegraphics[width=0.8\textwidth]{gam-scaling}
+}
+\only<2>{\begin{columns}[c]
+\begin{column}{0.6\textwidth}
+\includegraphics[width=6.2cm]{gam-scaling}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.4\textwidth}
 {\small \begin{itemize}
-\item But information must be completed. In the example, precise
-  identification require scaling of identified mode as a function of
-  ion sound gyroradius
+\item Information must be completed. In the example scaling of identified mode as a function of
+  ion sound velocities
 \end{itemize}}
 \end{column}
 \end{columns}
-\end{frame}
+}\end{frame}
 
 \begin{frame}{Power spectrum: The spectrogram}
 \begin{itemize}
-{\small \item The same information can be also analyzed in time applying the
+{\footnotesize \item The same information can be also analyzed in time applying the
   \textcolor{tascarletred}{\texttt{spectrogram}} technique which shows
   how the spectral density of the signal varying in time/frequency
   space {\footnotesize \parencite{spagnolo}}
-}\vspace{0.5cm}
+}
 
-\centering{\includegraphics[height=4.5cm]{alfven} }
-
-\item Again the information must be completed, as in the case proposed
-  where the Alfv\'enic nature of the observed peaks is revealed by the
+\begin{center}
+\includegraphics[height=5.5cm]{alfven} 
+\end{center}
+{\footnotesize\item Alfv\'enic nature revealed by the
   comparison with the plasma density
-\end{itemize}
+}\end{itemize}
 \end{frame}
 
 
@@ -373,9 +328,9 @@ C_j =
 \item Spatially distributed measurements allow access to spatial
   structure of the fluctuations
 \item The minimum set includes two measurements $x(t)$ and $y(t)$. We can define the
-  \textcolor{tascarletred}{Cross-correlation function},
-  \textcolor{taorange}{The cross-covariance function} and the
-  \textcolor{taskyblue}{cross-correlation coefficient function}
+  \textcolor{tascarletred}{\texttt{Cross-correlation function}},
+  \textcolor{taorange}{\texttt{The cross-covariance function}} and the
+  \textcolor{taskyblue}{\texttt{cross-correlation coefficient function}}
 {\footnotesize \begin{gather*}
 \tikz[baseline=(t1.base)]{\node[fill=tascarletred](t1){%
 $R_{xt}(\tau)=E[y(t)x(t-\tau)]$};}  \\
@@ -398,7 +353,7 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \item In analogy to the power spectrum we define the
   \textcolor{tascarletred}{Cross-power spectrum $S_{XY}(f)$} as the
   Fourier transform of the cross-correlation function
-\item As in the case of power spectrum, if $x(t)$ and $y(t)$ are real
+\item As for the power spectrum, if $x(t)$ and $y(t)$ are real
   function, the cross-power spectrum is totally defined by the
   positive frequency only
 \item Differently from the power spectrum, the cross-spectrum is
@@ -424,7 +379,7 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
   $n_e$ and plasma potential $\phi_p$ are know in the same nominal
   position
 
-\centering{\includegraphics[height=4cm]{PhaseCoherenceEn-Vp20367}}
+\centering{\includegraphics[height=3.88cm]{PhaseCoherenceEn-Vp20367}}
 
 \item This allow the possibility to distinguish the frequency where
   turbulence is \textcolor{rfxcyan}{Interchange-dominated} from that
@@ -481,9 +436,9 @@ f\tau}df = \frac{2}{B}\int_0^{+\infty}\Re[S_{nE}(f)]df
 \begin{gather*}
 \Gamma(f)=\frac{1}{M}\sum_{k=1}^{M}\Gamma^{k}(f) \\
 \Gamma^{(k)}(f)=\frac{2}{B}\Im\{k^{(k)}(f)N^{(k)}(f)\Phi^{*(k)}(f)\}
- 0<f<N/2-1 \\
+ \;0<f<N/2-1 \\
 \Gamma^{(k)}(f)=\frac{1}{B}\Im\{k^{(k)}(f)N^{(k)}(f)\Phi^{*(k)}(f)\}
- f=0,f=N/2
+ \;f=0,f=N/2
 \end{gather*}
 }
 \only<2>{
@@ -552,7 +507,7 @@ S(k,\omega)
 f)=\frac{1}{M}\sum_{j=1}^M S_n^{(j)}I_p[k_n^{j}] \\ 
 I_p[k_n^{j}] = 
 \begin{cases}
-1 \;\text{for}\; (p-1/2)\Delta k < k_n^{(j)}< (p+1/2)\delta k \\
+1 \;\text{for}\; (p-1/2)\Delta k < k_n^{(j)}< (p+1/2)\Delta k \\
 0 \;\text{elsewhere}
 \end{cases}
 \end{gather*}}
@@ -593,7 +548,7 @@ I_p[k_n^{j}] =
 \begin{itemize}[<+->]
 \item The Fourier decomposition uses trigonometric functions as
   orthogonal basis
-\item They have the drawback that these functions oscillates forevere,
+\item These functions oscillates forever,
   i.e. the information content of a generic function is spread over
   all the spectral component
 \item Thus Fourier decomposition is not suitable for processes highly
@@ -601,8 +556,8 @@ I_p[k_n^{j}] =
   \textcolor{tachameleon}{\texttt{Wavelet Transform}}{\footnotesize \parencite{Farge:1992un}}
 \item A Wavelet is a function $\psi\in \mathrm{L}^2(\mathbb{R})$ which
   satisfies the admissibility condition
-  $C_{\psi}-\int_{-\infty}^{+\infty}\frac{|\hat{\psi}(\omega)|^2}{|\omega|}d\omega
-  < \infty$ which means that $\psi$ is a zero mean function
+  $C_{\psi}=\int_{-\infty}^{+\infty}\frac{|\hat{\psi}(\omega)|^2}{|\omega|}d\omega
+  < \infty$, i.e. $\psi$ is a zero mean function
   $\int_{\infty}^{\infty}\psi(t)dt =0$
 \item Defining time-frequency atoms as
   $\psi_{s,\tau}=\frac{1}{\sqrt{\tau}}\psi\left(\frac{t-s}{\tau}\right)$ the
@@ -614,30 +569,28 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \end{itemize}
 \end{frame}
 \begin{frame}{Choice \& type of Wavelet}
-\only<1-4>{  \begin{itemize}
-  \item Wavelets to be chosen according to different criteria:
-\begin{description}[<+->]
-\item[(i)]  Orthogonal or nonorthogonal, according to the type of
-  basis uses. Nonorthogonal are redunant at large scales, where
-  wavelet spectrum at adjacent times is highly correlated. They are
-  useful in time series analysis
-\item[(ii)] Complex or real. Complex wavelet useful also when phase
-  relation has to be considered
-\item[(iii)] Width: The resolution is determined by the balance between
-  width in real and scale space
-\item[(iv)] Shape: The shape of the wavelet should reflect the
-  use. For example for the studies of variation into the signal a
-  boxcar-like function is more suitable.
-\end{description}
-\end{itemize}}
-\only<5>{
+% \only<1-4>{  \begin{itemize}
+%   \item Wavelets to be chosen according to different criteria:
+% \begin{description}[<+->]
+% \item[(i)]  Orthogonal or nonorthogonal, according to the type of
+%   basis uses. Nonorthogonal are redunant at large scales but they are
+%   useful in time series analysis
+% \item[(ii)] Complex or real. Complex wavelet useful also when phase
+%   relation has to be considered
+% \item[(iii)] Width: The resolution is determined by the balance between
+%   width in real and scale space
+% \item[(iv)] Shape: The shape of the wavelet should reflect the
+%   use. For example for the studies of variation into the signal a
+%   boxcar-like function is more suitable.
+% \end{description}
+% \end{itemize}}
 \begin{itemize}
 \item Example of different types of wavelet \parencite{Mallat:1999te}
-
-\centering{\includegraphics[height=7cm]{various_wavelet}}
+\begin{center}
+\includegraphics[height=7cm]{various_wavelet}
+\end{center}
 \end{itemize}
 
-}
 \end{frame}
 
 
@@ -646,7 +599,9 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \item In analogy to Fourier we can define Wavelet Cross power spectrum
   and Corresponding phase spectrum (well localized in time/frequency)
 
-\centering{\includegraphics[height=3.5cm]{wavelet-phase}}
+\begin{center}
+\includegraphics[height=3.5cm]{wavelet-phase}
+\end{center}
 
 \item Phase spectrum between density and potential varies because of
   varioation of the shear $\rightarrow$ responsible for transport
@@ -659,9 +614,8 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \begin{frame}{Wavelet for turbulence analysis}
 %\setbeamercovered{transparent=10} 
  \begin{itemize}[<+->]
-  \item It can be shown that wavelet coefficient exhibits similar
-    scaling properties as the fluctuations of the signals at a given
-    scales
+  \item Wavelet coefficient exhibits similar
+    scaling properties as the fluctuations of the signals at the same
 \begin{equation*}
 \delta_{\tau} f = f(t+\tau)-f(t) \sim \tau^h \Rightarrow |w(t,\tau)|\sim\tau^{h+1/2}
 \end{equation*}
@@ -688,17 +642,17 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \item Intermittency is due to the presence of strong, sporadic fluctuations
 \item The \textcolor{ta3chameleon}{\texttt{Local Intermittency
       Measurements}} is a method, based on wavelet, which identifies in time and
-  scales this fluctuations {\footnotesize\parencite{Antoni:2001tm}}
+  scales these fluctuations {\footnotesize\parencite{Antoni:2001tm}}
   \item The method is based on the following:
 \begin{equation*}
 \{w(t,\tau)\} = \{w_e(t,\tau)\}\oplus \{w_g(t,\tau)\} \quad
-\text{with} \,
+\text{with} \;
 F(\tau)=\frac{\langle w_g(t,\tau)^4\rangle}{[\langle w_g(t,\tau)^2]^2}
 = 3
 \end{equation*}
 \item The typical fluctuations may be deriven using
   \textcolor{ta3chameleon}{\texttt{Conditional Average Procedure}},
-  i.e. averaging different time window of the signal, each 
+  i.e. averaging different time windows of the signal, each 
   centered around the occurrence of an
   \alert{Intermittent Events} or \alert{blobs}
 
@@ -734,6 +688,46 @@ F(\tau)=\frac{\langle w_g(t,\tau)^4\rangle}{[\langle w_g(t,\tau)^2]^2}
 
 \end{frame}
 
+
+\begin{frame}{Other sophisticated tools: hints}
+\only<1>{
+\begin{itemize}
+\item \textcolor{ta3chameleon}{\texttt{Degree of Polarization}}, which
+  tests, frequency by frequency by frequency, the plane wave ansatz 
+\parencite{PhysRevLett.106.125002}
+\begin{center}
+\includegraphics[height=5cm]{DOP}
+\end{center}
+\end{itemize}
+}
+
+\only<2>{
+\begin{itemize}
+\item The \textcolor{ta3chameleon}{\texttt{hodogram}}, which follows the trajectory of fluctuating
+  fields, highlightning the state of polarization \parencite{PhysRevLett.106.125002}
+
+  \begin{center}
+    \includegraphics[height=5cm]{hodograms}
+  \end{center}
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}{Summary}
+\begin{itemize}
+{\large\item High temporal and spatial resolution are needed for better
+  characterization of the plasma. But two points still gives a bunch
+  of information
+\item Fourier transform allows estimate of quantities directly
+  comparable with theories
+\item Often localized events (in space or time) require more
+  sophisticated tools which maintain the locality of the information
+\item As much as possible correlation between different diagnostics
+  are generally needed for an adeguated comprehension}
+\end{itemize}
+
+\end{frame}
 \begin{frame}[allowframebreaks]{Bibliography}
 \printbibliography
 \end{frame}
