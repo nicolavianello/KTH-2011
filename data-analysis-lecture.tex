@@ -10,10 +10,10 @@
 \usepackage[bibstyle=numeric-comp,citestyle=authoryear-comp,labelyear=true,maxnames=1]{biblatex}
 \bibliography{biblio}
 \renewcommand*{\bibfont}{\footnotesize}
-%\renewcommand*{\citefont}{\footnotesize}
 \mode<presentation>
 \graphicspath{{pdf_box/}}
-
+\renewcommand\Re{\operatorname{Re}}
+\renewcommand\Im{\operatorname{Im}}
 
 % for adding foot note with reference
 \makeatletter
@@ -67,7 +67,7 @@ Diagnostics provides information with different time and spatial resolution
   of the plasma or entire torus)
 \item line integrated measurements (single Line of Sight (LoS)) 
 \item Arrays of LoS (examples are tomographic reconstruction)
-\onslide<2>{\item We will focus on analysis technique suitable for
+\onslide<2>{\item<alert@2> We will focus on analysis technique suitable for
   single-point/multi point measurements, extracting information on
   spatial/temporal dynamics
 }\end{enumerate}
@@ -77,10 +77,10 @@ Diagnostics provides information with different time and spatial resolution
 \frametitle{ The needs for the Fourier transform}
 \begin{itemize}[<+-|alert@+>]
 \item Generally theories are developed in the frequency/wavevector
-  domains ($\omega,\mathbf{k}$) rather than in time/space ($t,r$)
+  domains ($\omega,\mathbf{k}$) rather than in time/space ($t,\mathbf{r}$)
 \item The reason for that resides principally on the fact that
-  \emph{Fourier transform} of governing equation allows an easier
-  treatment of typical mathematical operator
+  \emph{Fourier transform} of governing equations allows an easier
+  treatment of typical mathematical operators
 \begin{equation*}
 \frac{\partial}{\partial t} \Longrightarrow i\omega; \qquad
 \frac{\partial f}{\partial x_i} \Longrightarrow i k_i \hat{f}(\mathbf{k},t)
@@ -127,7 +127,7 @@ $x_k = \frac{1}{N}\sum_{n=-N/2}^{N/2}X_ne^{2\pi kn/N}$};}
       Frequency}} 
   $f_N = \frac{1}{2\Delta t}$, 
   defines the
-  maximum frequency which can be properly resolved, or equivalently
+  maximum frequency which can be properly resolved, or, equivalently,
   given the frequency of the system we would like to investigate, we
   had to sample at least at twice the values of this frequency.}
 \end{itemize}
@@ -142,7 +142,7 @@ $x_k = \frac{1}{N}\sum_{n=-N/2}^{N/2}X_ne^{2\pi kn/N}$};}
 % \only<2>{
 \begin{theorem}{\underline{Convolution theorem:}}
 If $x(t)$ and $g(t)$ have FT respectively equal to $X(f)$ and $G(f)$
-the convolution of the two function $h(t) = \int_{-\infty}^{+\infty}x(t^{'})g(t-t^{'})\mathrm{d}t^{'}$
+the convolution of the two functions $h(t) = \int_{-\infty}^{+\infty}x(t^{'})g(t-t^{'})\mathrm{d}t^{'}$
 is equal to $X(f)G(f)$
 \end{theorem}
 % \item The importance of the convolution equation resides on the fact that it
@@ -180,10 +180,9 @@ integral of the squared modulus of its spectrum, i.e:
 
 \only<2>{\small 
 \begin{itemize}
-\item Actually signals are acquired for a given period
+\item Actually signals are acquired for a limited period
 $T\rightarrow$ equivalent to the convolution with a box
-function $G(t)$ with domain $0\leq t \leq T$, i.e. $G(t)=1$ if $
-0\leq t \leq T$, 0 otherwise
+function $G(t)$ with support $[0,T]$
 \item In the
   Fourier space this is equivalent to the multiplication with 
 the Fourier representation of a box function $\rightarrow \mathrm{sinc}(x) =
@@ -220,7 +219,7 @@ E[x(t_1)x(t_2)] \quad
 E[x(t_1)x(t_2)x(t_3)] \quad
 \ldots
 \end{equation*}
-\item We define \textcolor{taskyblue}{\texttt{Auto-correlation function}}, i.e. 
+\item We define the \textcolor{taskyblue}{\texttt{Auto-correlation function}}, i.e. 
   the second order momentum of the distribution, and the  
 \textcolor{tachameleon}{\texttt{autocovariance
   function}}
@@ -302,7 +301,7 @@ C_j =
 \begin{column}{0.4\textwidth}
 {\small \begin{itemize}
 \item Information must be completed. In the
-  example\textcolor{taskyblue}{Geodesic Acoustic Modes} identified
+  example \textcolor{taskyblue}{Geodesic Acoustic Modes} identified
   considering their scaling with $c_s$
 \end{itemize}}
 \end{column}
@@ -319,8 +318,8 @@ C_j =
 \begin{center}
 \includegraphics[height=5.5cm]{alfven} 
 \end{center}
-{\footnotesize\item Alfv\'enic nature, with $\omega$ depenend from the
-  Alfv\'en velocity $v_A = B/\sqrt{\rho\mu_0}$ revealed by the
+{\footnotesize\item Alfv\'enic nature, with $\omega$ dependent from the
+  Alfv\'en velocity $v_A = B/\sqrt{\rho\mu_0}$, revealed by the
   comparison with the plasma density
 }\end{itemize}
 \end{frame}
@@ -343,7 +342,7 @@ $C_{xy}(\tau)=E[(y(t)-\overline{y})(x(t-\tau)-\overline{x})]$};} \\
 \tikz[baseline=(t1.base)]{\node[fill=taskyblue](t1){%
 $\rho_{yx}(\tau) = \frac{C_{yx}(\tau)}{\sqrt{C_{xx}(0)C_{yy}(0)}}$};}
 \end{gather*}}
-\item In the discrete counterpart of the cross-covariance is
+\item The discrete counterpart of the cross-covariance is
   defined as
 {\footnotesize\begin{equation*}
 C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
@@ -388,8 +387,8 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \item This allow the possibility to distinguish the frequency where
   turbulence is \textcolor{rfxcyan}{Interchange-dominated} from that
   where turbulence is \textcolor{orange}{Drift-dominated}
-\item Other possibility is the determination of the polarization of
-  magnetic fluctuations frequency resolved 
+% \item Other possibility is the determination of the polarization of
+%   magnetic fluctuations frequency resolved 
 \end{itemize}
 \end{frame}
 
@@ -397,8 +396,8 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \begin{itemize}[<+->]
 \item In the case of a reasonably deterministic dispersion relation between $k$ and $f$, the phase may be
   used for the determination of $k$
-\item Indeed if $k = k(f)$ then $g(t,\overline{r}) =
-  \int_{-\infty}^{+\infty}G(f)e^{-ik(f)\cdot \overline{r}}e^{i2\pi f}df$
+% \item Indeed if $k = k(f)$ then $g(t,\overline{r}) =
+%   \int_{-\infty}^{+\infty}G(f)e^{-ik(f)\cdot \overline{r}}e^{i2\pi f}df$
 % \item If measures exhists at two position $g(t,\overline{r}_1)$ and
 %   $g(t,\overline{r}_2)$ separated by $d$ at a given frequency the two signals will be
 %   phase shifted of $\Theta_{12}(f)=k(f)d$ where $\Theta_{12}(f)$ is
@@ -415,7 +414,7 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
   i.e. $d=r_p\Delta\Theta$ then the azimuthal mode number is computed
   as $m=\Theta_{12}/\Delta\Theta$
 \item \textcolor{tachameleon}{The probe distance $d$ must be less than
-  aa wave length, less than a correlation length, but far enough the
+  a wave length, less than a correlation length, but far enough the
   detect a measurable phase difference}}
 \end{itemize}
 \end{frame}
@@ -426,15 +425,15 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \item According to previous definitions and properties 
 \begin{equation*}
 \Gamma
-=\frac{1}{B}R_{nE}(\tau=0)= \frac{2}{B}\int_0^{+\infty}\Re\text{e}[S_{nE}(f)]df
+=\frac{1}{B}R_{nE}(\tau=0)= \frac{2}{B}\int_0^{+\infty}\Re[S_{nE}(f)]df
 \end{equation*}
 \item In quasi-static approximation $\tilde{E}=-\nabla\tilde{\phi}$,
-  and considering the finiteness of the measurements we
-  end up with the formula
-\begin{eqnarray*}
-\Gamma(f) = \frac{2}{BT}\Im\text{m}\{ E[k(f)N(f)\Phi^{*}(f)]\} \\
-\Gamma(f)=\frac{2k(f)}{B}\Im\text{m}\{S_{n\phi}(f)\} \; \text{if $k(f)$ is deterministic}
-\end{eqnarray*}
+  with finite record length $T$, and assuming a deterministic
+  dispersion relation 
+\begin{equation*}
+% \Gamma(f) = \frac{2}{BT}\Im\text{m}\{ E[k(f)N(f)\Phi^{*}(f)]\} \\
+\Gamma(f)=\frac{2k(f)}{B}\Im\{S_{n\phi}(f)\} 
+\end{equation*}
 \end{itemize}
 \end{frame}
 
@@ -444,7 +443,7 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \item In practice, considering digitized signals we have
   \footnotesize{(see for example \parencite{Antoni:2000bn})}
 \begin{equation*}
-\Gamma(f)=\frac{1}{M}\sum_{k=1}^{M}\Gamma^{k}(f) = \frac{2}{BM}\sum_{k=1}^{M-1}\Im\text{m}\{k^{(k)}(f)N^{(k)}(f)\Phi^{*(k)}(f)\}
+\Gamma(f)=\frac{1}{M}\sum_{k=1}^{M}\Gamma^{k}(f) = \frac{2}{BM}\sum_{k=1}^{M-1}\Im\{k^{(k)}(f)N^{(k)}(f)\Phi^{*(k)}(f)\}
 \end{equation*}
 }
 \only<2>{
@@ -485,19 +484,17 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \end{frame}
 
 
-\begin{frame}{The wavenumber-Frequency Spectrum}
+\begin{frame}{The wavenumber-frequency Spectrum}
 \begin{itemize}[<+->]
-\item In general, we have a turbulent medium, with different wave
-  numbers corresponding to the same frequency
-\item We need to compute the \textcolor{tachameleon}{\texttt{Wave
+\item For turbulent medium, with different wave
+  numbers corresponding to the same frequency we need to compute the \textcolor{tachameleon}{\texttt{Wave
       number-frequency power spectrum $S(k,\omega)$}}
 \item This is equivalent to the Fourier transform of the space time
   correlation function $R(\chi,\tau)$
-\begin{gather*}
-R(\chi,\tau) = E[g(x,t)g^{*}(x-\chi,t-\tau)] \\
+\begin{equation*}
 S(k,\omega)
 =\iint_{-\infty}^{+\infty}R(\chi,\tau)e^{-i(\omega\tau-k\chi)}d\chi d\tau
-\end{gather*}
+\end{equation*}
 % \only<4>{\item Again for finite time length $T$ and finite space $L$ we have an
 %   estimate 
 % \begin{gather*}
@@ -505,10 +502,9 @@ S(k,\omega)
 % \\
 % \lim_{L,T\rightarrow\infty} \hat{S}(k,\omega) = S(k,\omega)
 % \end{gather*}}
-\only<4>{
 \item In the two 2 points cases are available, the spectrum is
   reconstructed on a statistical basis considering the $M$ different realizations:
-{\footnotesize\begin{gather*}
+{\small\begin{gather*}
 \hat{S}_L(k,\omega)=\hat{S}_L(p\Delta k,2\pi n \Delta
 f)=\frac{1}{M}\sum_{j=1}^M S_n^{(j)}I_p[k_n^{j}] \\ 
 I_p[k_n^{j}] = 
@@ -517,7 +513,7 @@ I_p[k_n^{j}] =
 0 \;\text{elsewhere}
 \end{cases}
 \end{gather*}}
-}
+
 
 \end{itemize}
 
@@ -555,24 +551,19 @@ I_p[k_n^{j}] =
 \item The Fourier decomposition uses trigonometric functions as
   orthogonal basis
 \item These functions oscillates forever,
-  i.e. the information content of a generic function is spread over
-  all the spectral component
-\only<3>{\item Thus Fourier decomposition is not suitable for processes highly
-  localized in time/space. We can use
+  i.e. the information spreaded 
+\item We need functions localized in time and scales $\Rightarrow$
   \textcolor{tachameleon}{\texttt{Wavelet
-      Transform}}{\footnotesize \parencite{Farge:1992un}}. Functions
-  well defined in time and scale
+      Transform}} {\footnotesize \parencite{Farge:1992un,Mallat:1999te}}.
 
 \begin{center}
-\includegraphics[height=4cm]{morlet}
+\includegraphics[height=3.5cm]{morlet}
 \end{center}
 
-}
-
-\item The admissibility condition
-  $C_{\psi}=\int_{-\infty}^{+\infty}\frac{|\hat{\psi}(\omega)|^2}{|\omega|}d\omega
-  < \infty$, implies that the wavelet $\psi$ is a zero mean function
-  $\int_{\infty}^{\infty}\psi(t)dt =0$
+% \item The admissibility condition
+%   $C_{\psi}=\int_{-\infty}^{+\infty}\frac{|\hat{\psi}(\omega)|^2}{|\omega|}d\omega
+%   < \infty$, implies that the wavelet $\psi$ is a zero mean function
+%   $\int_{\infty}^{\infty}\psi(t)dt =0$
 \item Defining time-frequency atoms as
   $\psi_{s,\tau}=\frac{1}{\sqrt{\tau}}\psi\left(\frac{t-s}{\tau}\right)$ the
   \textcolor{tachameleon}{\texttt{Continuous Wavelet Transform}} is
@@ -582,15 +573,15 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \end{equation*}
 \end{itemize}
 \end{frame}
-\begin{frame}{Choice \& type of Wavelet}
-\begin{itemize}
-\item Example of different types of wavelet \parencite{Mallat:1999te}
-\begin{center}
-\includegraphics[height=7cm]{various_wavelet}
-\end{center}
-\end{itemize}
+% \begin{frame}{Choice \& type of Wavelet}
+% \begin{itemize}
+% \item Example of different types of wavelet \parencite{Mallat:1999te}
+% \begin{center}
+% \includegraphics[height=7cm]{various_wavelet}
+% \end{center}
+% \end{itemize}
 
-\end{frame}
+% \end{frame}
 
 
 \begin{frame}{Wavelet application}
@@ -613,24 +604,26 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \begin{frame}{Wavelet for turbulence analysis}
 %\setbeamercovered{transparent=10} 
  \begin{itemize}[<+->]
-  \item Wavelet coefficient exhibits similar
+  \item Wavelet coefficients exhibit similar
     scaling properties as the fluctuations of the signals at the same
 \begin{equation*}
 \delta_{\tau} f = f(t+\tau)-f(t) \sim \tau^h \Rightarrow |w(t,\tau)|\sim\tau^{h+1/2}
 \end{equation*}
-\item Thus wavelet coefficient may be used for the study of the
-  scaling properties of the fluctuation
-\only<3>{\item Easy way to compute the
+% \item Thus wavelet coefficients may be used for the study of the
+%   scaling properties of the fluctuation
+\item Easy way to compute the
   \textcolor{tachameleon}{\texttt{Probability Distribution Function}}
   of normalized flutuations $C(t,\tau)=\frac{w(t,\tau)-\langle
     w(t,\tau)\rangle}{\sigma_{\tau}}$. For
   \textcolor{taskyblue}{self-similar} fluctuations, these should
-  collapse to a single form}
+  collapse to a single form
 
 \item \textcolor{tascarletred}{\textbf{Revealing non
       self-similariy i.e. Intermittency}}
 
-\centering{\includegraphics[height=4.5cm]{pdf_fluct}}
+\begin{center}
+\includegraphics[height=3.7cm]{pdf_fluct}
+\end{center}
 
 \end{itemize}
 \end{frame}
@@ -640,36 +633,36 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
   \begin{itemize}
 \item Intermittency is due to the presence of strong, sporadic fluctuations
 \item The \textcolor{ta3chameleon}{\texttt{Local Intermittency
-      Measurements}} is a method, based on wavelet, which identifies in time and
-  scales these fluctuations {\footnotesize\parencite{Antoni:2001tm}}
-  \item The method distinguish two orthogonal sets :
-\begin{equation*}
-\{w(t,\tau)\} = \{w_e(t,\tau)\}\oplus \{w_g(t,\tau)\} \quad
-\text{with} \;
-F(\tau)=\frac{\langle w_g(t,\tau)^4\rangle}{[\langle w_g(t,\tau)^2]^2}
-= 3
-\end{equation*}
-\item The typical fluctuations may be deriven using
+      Measurements}} is a threshold method, based on wavelet, which identifies \alert{in time and
+  scales} these fluctuations {\footnotesize\parencite{Antoni:2001tm}}
+%   \item The method distinguishes two orthogonal sets :
+% \begin{equation*}
+% \{w(t,\tau)\} = \{w_e(t,\tau)\}\oplus \{w_g(t,\tau)\} \quad
+% \text{with} \;
+% F(\tau)=\frac{\langle w_g(t,\tau)^4\rangle}{[\langle w_g(t,\tau)^2]^2}
+% = 3
+% \end{equation*}
+\item The typical shape of the fluctuations may be derived using
   \textcolor{ta3chameleon}{\texttt{Conditional Average Procedure}},
-  i.e. averaging different time windows of the signal, each 
-  centered around the occurrence of an
-  \alert{Intermittent Events} or \alert{blobs}
-
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Example of structures}
-\begin{itemize}
-\item Conditional average may be applied to different signals using
-  the same trigger {\footnotesize\parencite{Vianello:2010tv,Martines:2009im}}
-\end{itemize}
-
+  i.e. averaging different time windows of the signal 
+\only<2>{\item Shape of a typical  \alert{Intermittent Events} or
+  \alert{blobs}
 \begin{center}
-\includegraphics[height=7.5cm]{strutturaMediaConVpNuova}
-\end{center}
-
-
+\includegraphics[height=3.6cm]{campo_vortici}
+\end{center}}
+\end{itemize}
 \end{frame}
+
+% \begin{frame}{Example of structures}
+% \begin{itemize}
+% \item Conditional average may be applied to different signals using
+%   the same trigger {\footnotesize\parencite{Vianello:2010tv,Martines:2009im}}
+% \end{itemize}
+
+% \begin{center}
+% \includegraphics[height=7.1cm]{strutturaMediaConVpNuova}
+% \end{center}
+% \end{frame}
 
 
 

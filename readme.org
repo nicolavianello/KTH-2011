@@ -5,7 +5,303 @@
    - Programs used for the creation of the graphics are both in idl/ and python/ directory
 
 
+*** Notes on slides
+**** Slide 1
+     - This lecture will be devoted to the description of analysis
+       technique suitable for turbulence investigation in magnetized plasmas
+     - The techniques describes are completely general and can be
+       applied to all types of plasmas, indipendently from the
+       configuration choosen. 
+     - Very basic examples will be provided to ensure clarity and
+       demonstrate practical applications
 
+**** Slide 2
+     - All the analysis will use data provided by diagnostics 
+     - Measurements will be available in a variety of different modes:
+       + Single point local measurements (as Langmuir probes)
+       + Spatially distributed arrays of measurements (which can cover
+         portion of the plasma with different sizes)
+       + Line integrated measurements as are the cases for
+         spectroscopic diagnostics
+       + Array of LoS
+       + We focuses on techniques which are suitables for the first
+         two cases indicated
+**** Slide 3
+     - Interpretation of experimental data requires comparison with
+       theoretical prediction, but generally theories are most easily
+       developed in the frequency/k vector space rather than in
+       time/physical space
+     - On of tehe reason for that is that in the omega/k space
+       mathematical operator like time or spatial derivatives are
+       represented by simple moltiplication for appropriate frequency
+       or k
+     - Thus before proceeding with the lecture we would like to make
+       some remarks on Fourier trasform giving detailes on the
+       applicability to physical data
+
+**** Slide 4
+     - Direct and inverse Fourier transform are defined as a function
+       of frequency f in the following way
+     - In real case, we will deal with discrete signals with N
+       points in time and a sampling frequency of 1/Delta t. In the
+       case of discrete signals, the corresponding transform is called
+       the Discrete Fourier transform, direct and inverse
+     - Actually, in the case of discrete signals a theorem exhists
+       which ensure that, if a function has Fourier coefficient equal
+       to zero for frequency greater than a cut-off, than it is fully
+       specified by a discrete series with equispaced values with
+       intervals not exceeding one half of the inverse of the cut-off
+     - We define consequently the Nyquist frequency, as one half of
+       the inverse of the sampling rate. It represents the last
+       properly resolved frequency in a signal.
+
+**** Slide 5
+     - Different theories may be applied to the FT and we cite here
+       only two of them
+     - The convolution theorem, which ensure that the convolution operator of
+       two functions is transformed in a moltiplication operator
+       between the corresponding fourier components. This theorem is
+       used for example in the treatment of the non-linearities in the
+       Na-St equations or, as we will see later is at the basis of the
+       wavelet transform
+     - The Rayleigh's theorem which ensure that the integral of the
+       square modules of the function in the real and fourier domain
+       are equal one to the other. It substantially states an energy
+       conservation principle between real and fourier representation
+**** Slide 6
+     - The discreteness of the signals requires some trick in order to
+       be properly treated
+     - For example the presence of frequency higher than the Nyquist
+       frequency may lead to spurious frequency, as the case of this 9
+       kHz cosine, which if sampled at 10 kHz, manifests itself as a
+       spurious 1 kHz oscillations
+     - Furthermore actual signals are acquired for a limited period
+       T. From the mathematical point of view this is equivalent to
+       the convolution with a boxcar-like function with support [0,T]
+     - Thus the Fourier transform of the function is mupltiplied with
+       the corresponding Fourier trasnform of the boxcar which is a
+       function of form sin(x) over x which is not well localized in
+       frequency but cause some leaking from one frequency bin to the
+       adjacents ones.
+     - A solution is provided by multipling the function with some
+       window function which reduces the lobes. And here we have the
+       typical example of an Hanning window
+**** Slide 7
+     - It should be known, from basic knowledge of statistical
+       mechanics, that a random process x(t) is completely determined
+       by the knowledge of its moments, i.e. averages over the
+       distribution functions
+     - On this basis we define the Auto-correlation function, which is
+       the second order momentum of the distribution, and the
+       corresponding quantity for the fluctuation of the signal named
+       Autocovariance function
+     - Another useful definition is the Auto-correlation coefficient,
+       where normalization is done on the value of the autocorrelation
+       at zero lag.
+     - We can also write the corresponding formula for digitized
+       signals for the autocovariance
+**** Slide 8
+     What we can learn from an autocorrelation function. We can
+     measure the degree of correlation of a turbulence field, by
+     properly defining the autocorrelation time as the lag where the
+     autocorrelation is reduced to 1/e..... This is a typical
+     quantities, which is easy to measure which can be compared with
+     turbulence theories
+**** Slide 9
+     - Once we define the autocorrelation we can also compute its
+       Fourier transform, named Power spectrum
+     - It describe how the power of the signal is distributed in the
+       frequency spectrum
+     - Dealing with finite records of signals, it can be shown that
+       the power spectrum is the limit of the periodogram of the
+       signals, which is the average of the square of the FT
+     - Numerically the spectral estimator of the power spectrum is
+       computed dividing the signals into M slices, treated as
+       indipendent realization, computing the DFT and averaging,
+       frequency by frequency the square of the DFT. 
+**** Slide 10
+     - What physically can be learned from a power spectrum is the
+       presence of modes in the plasma, which results in peaks of the
+       power spectrum
+     - This is an example taken from doppler reflectometer in a
+       tokamak plasma, where a clear peaks emerge from the spectrum
+     - To disentangle instabilities which create this peak, we have to
+       complement the information. And here we have a typical
+       example. In order to state that this peak, is induced by the
+       presence of a Geodesic Acoustic Mode. This modes arise as a
+       consequence of the linear coupling of an $(m,n)=(0,0)$
+       electrostatic potential with an $(m,n)=(1,0)$ pressure
+       perturbation. It is found to scale with the ions sound velocity
+       normalized to the major radius. The observation of the scales
+       allow the identification of the origin of the mode
+**** Slide 11
+     - Another example arises from the computation of the
+       spectrogram. This is based on the Short-Time-Fourier-Transform
+       (i.e. we divide the signals in slices of small extent and
+       compute the corresponding power spectrum). It describe how the
+       power spectral density distributes in time and frequency
+     - Again the peaks which are observed at higher frequency, in
+       order to be properly interpreted have to be compared with other
+       quantities. In this case we observe a dependence of the value
+       of the frequency from the density, suggesting these are some
+       kind of Alfvenic modes
+**** Slide 12
+     - The availability of distributed measurements allow acces to the
+       spatial structure of the fluctuations
+     - In analogy with the definition for single point, given two
+       functions we can define the Cross-correlation function, the
+       Cross-covariance function and the Cross-correlation coefficient function
+     - Still with analogy to the 1 point case we can define the
+       corresponding quantities in the discrete case
+       
+**** Slide 13
+    - In analogy to one point measurement, we define the Cross-power
+      spectrum as the Fourier transform of the cross-correlation function
+    - Dealing with real function, for the studies of cross-power
+      spectrum we can limit to positive frequencies 
+    - The cross-power spectrum is complex-valued and we define the
+      Phase spectrum as the imaginary part of the Cross-power spectrum
+    - We can define the coherence, which assumes values between [0,1]
+    - Again for finite discrete series, the cross-power spectrum is
+      built up as average over different slices, or different realizations
+**** Slide 14
+     - The cross-power analysi may be applied also to measurements of
+       different quantities in the same location 
+     - This is an example using langmuir probes which gives
+       information on density and potential in the same nominal
+       position and these are the derived phase spectrum and coherence
+     - First we must state that the signals have to be well correlated
+       in order to give a meaningful phase spectrum information
+     - We have highlighted two different regions where electron
+       density and electron pressure have different phase relation
+       moving from pi half to 0
+     - The comparison with theories (specifically linear theory) tell
+       us that the two frequency ranges are dominated by different
+       instabilities: in particular we have an interchange dominated
+       region the interchange turbulence results as a combination
+       effect of pressure gradient and bad curvature of the magnetic
+       field and another region which is drift-dominated,
+       i.e. dominated by turbulence whose free energy source is the
+       gradient of the density and characterized by finite parallel wavelenght
+**** Slide 15
+     - If a reasonably dispersion relation exhists between k and f,
+       the phase spectrum may be used to derive the k spectrum for
+       separated measurements
+     - This is due that the Fourier transform of the function g(r,t)
+       reduced to a function of the frequency only
+     - From a practical point of view, having two measurements, the
+       phase spectrum at a given frequency which define the phase
+       shift between the Fourier components at the considered
+       frequency is a function of k moltiplied by the distance d
+     - If the measurements are azimuthally distributed we can also
+       derived the mode number
+     - A note should be given: the separation of the probe should not
+       be greater than a wavelenght (equivalently the maximum
+       resolvable k is pi/Delta x), less than a correlation length, to
+       ensure a good coherence between the signals but large enought
+       to give measurable phase difference
+     
+**** Slide 16
+     - An example of the application of the cross-power spectrum is
+       the determination of the particle flux
+     - The particle flux is defined as the ensemble average of the v_r
+       and n, where as fluctuating velocities we consider the
+       fluctuating electric drift velocity
+     - This can be written as the cross-correlation at 0 lag and the
+       corresponding Fourier transformation is the following where we
+       have used the fact that the real part of the cross spectrum is
+       odd in frequency whereas the imaginary is even
+     - In the case of quasi-static approximation, and assuming an
+       almost deterministic phase dispersion relation the Flux can be
+       computed as the Imaginary part of the cross-spectrum between
+       density and potential moltiplied by the k vector
+
+**** Slide 17
+     - This can also be computed in the discrete domain of realistic signals
+     - This an example of the computation where we can observe which
+       are the frequency which dominates the particle transport. If an
+       almost deterministic phase relation may be deriven as in this
+       case, we can also determine which are the fluctuation
+       responsible for the loss of particles
+**** Slide 18
+    - An interesting comparison arises whenever we compute a different
+      quantities, still using the cross-power spectrum
+    - We are going to calculate the reynolds stress, which enters in
+      the equation of momentum flux generation
+    - Experimentally this can be done for example using probes
+    - The comparison between the frequency resolved reynolds stress
+      and the frequency resolved particle flux reveal how different
+      scales are involved in the momentum flux and in the particle
+      flux dynamics. The deterministic phase dispersion relation allow
+      also to disentangle the different spatial scales involved in the
+      two processes
+**** Slide 19
+    - For turbulent medium, with different wave vectors corresponding
+      to the same frequency we need to compute thw Wave
+      number-frequency spectrum
+    - It is defined in analogies with previous observation as the
+      Fourier transform of the spatial-time cross-correlation 
+    - There is no need to have a full spatial information, with just
+      to points we can relie on the statistics and on different
+      realization and compute the k-omega spectrum according to this
+      formula. This mean that we create a sort of histogram of the
+      cross-power spectrum taking into account that for differen
+      realization different k are determined for different frequencies
+**** Slide 20
+    - An example of the applicatin is shown in this figure where
+      S(k,omega) is compared in L and H mode discharges in NSTX. We
+      observe that all the fluctuations moves approximately with the
+      same phase velocities, we observe a change in the spatial
+      spectral content between the L an H mode.
+    - Integrating in frequency we can thus obtain a full spectrum in k
+      of the fluctuations which for examples shows an increase in the
+      relative power of larger scales in H-mode and a faster decays at
+      smaller scales
+**** Slide 21
+    - The limit of the Fourier decomposition is that it uses
+      trigonometric function as orthogonal basis which are not
+      localized in time but oscillates forever
+    - If we want a method for maintaining the locality of the
+      information we can use the Wavelet trasnform. Here an example of
+      a typical wavelet, which is a zero-mean function localized both
+      in frequency and in time
+    - the continuous wavelet transform generates wavelet coefficients
+      as the convolution of the studied function with atoms generated
+      by translating and stretching the mother wavelet
+**** Slide 22
+    - From the wavelet transform we can build the wavelet cross-power
+      spectrum, and consequently the wavelet phase spectrum
+    - Here for example we observe an abrupt change of phase between
+      density and potential fluctuation
+    - This change of phase, which has consequences on transport as we
+      know from the aforementioned calculation is associated to an
+      induced increasing of the ExB shear obtained by a biasing
+      experiment, where an electrode polarized with respect to the
+      vessel of the machine has been used to generate a JxB force
+      which could spin-up the plasma
+**** Slide 23
+    - Wavelet coefficient exhibits the same scaling properties of the
+      fluctuation of the signals
+    - They can be used in turbulence analysis for multri-fractal
+      approach, i.e. for the studies of the scaling properties of the
+      fluctuation. For a pure self-similar system, where the energey
+      is equally distributed in the process of energy cascade, the PDF
+      of the normalized coefficients should collapse to a single PDF
+    - The increasing of the tails of these distributins at smaller
+      time scales is typical of the intermittency process, which cause
+      localization in time and spatial scale of the energy of the
+      system. i.e. it is due to sporadic intense fluctuation
+**** Slide 24
+    - We can use methods based on the wavelet which allows the
+      identification in time and frequency of those intense
+      fluctuation pertaining to the tails of the PDF. Then we can
+      derive the typical shape of these fluctuations using the CA
+      technique, i.e. averaging time windows centered around the
+      occurrence of these sporadic events
+    - This is a result, where we have used a combination of probes
+      measuring the potential using as trigger the appearence of an
+      intermittent structures in the more inserted probe. The velocity
+      pattern is then reconstructed, revealing as these blobs are vortices
 ** Activites
    Presentation on current activities (both scientific and pedagocal) and plans for the future both scientific and pedagogical
 
@@ -34,7 +330,7 @@
 	 - Activites on the phase relation between velocity and
            magnetic perturbation during high density discharges
    7. Issue: Future activities [1 Slides]
-      1) Fast ions
+      1) Fast ions & turbulence redistribution of fast particles
       2) Reconnection (sinergy with plasma science)
       3) Momentum (also considering the effect of magnetic
          perturbation on the momentum)
