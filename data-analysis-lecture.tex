@@ -62,41 +62,66 @@
 Diagnostics provides information with different time and spatial resolution
 \setbeamercovered{transparent=10}
 \begin{enumerate}
-\item Measurements coming from a single point  
-\item Spatially distributed arrays of measurements (resolving portion
+\alert<2>{\item Localized measurements
+\begin{description}
+\item[(a)] Measurements coming from a single point  
+\item[(b)] Spatially distributed arrays of measurements (resolving portion
   of the plasma or entire torus)
-\item line integrated measurements (single Line of Sight (LoS)) 
-\item Arrays of LoS (examples are tomographic reconstruction)
-\onslide<2>{\item<alert@2> We will focus on analysis technique suitable for
-  single-point/multi point measurements, extracting information on
-  spatial/temporal dynamics
-}\end{enumerate}
+\end{description}}
+\item Line integrated measurements 
+\begin{description}
+\item[(a)] Single Line of Sight 
+\item[(b)] Arrays of LoS
+\end{description}
+
+\end{enumerate}
+\visible<3>{
+\begin{center}
+\includegraphics[width=\textwidth]{outline}
+\end{center}}
 \end{frame}
 
-\begin{frame}
-\frametitle{ The needs for the Fourier transform}
-\begin{itemize}[<+-|alert@+>]
-\item Generally theories are developed in the frequency/wavevector
-  domains ($\omega,\mathbf{k}$) rather than in time/space ($t,\mathbf{r}$)
-\item The reason for that resides principally on the fact that
-  \emph{Fourier transform} of governing equations allows an easier
-  treatment of typical mathematical operators
-\begin{equation*}
-\frac{\partial}{\partial t} \Longrightarrow i\omega; \qquad
-\frac{\partial f}{\partial x_i} \Longrightarrow i k_i \hat{f}(\mathbf{k},t)
-\end{equation*}
-\end{itemize}
-\onslide<3>{
-\begin{block}{}
-\begin{itemize}
-\item Some remarks on basic Fourier Transform and its discrete counterpart
-the Discrete Fourier Transform are mandatory
-\end{itemize}
-\end{block}
-}
-\end{frame}
+% \begin{frame}
+% \frametitle{ The needs for the Fourier transform}
+% %% per aggiungere la lettera colorata con l'argomento in alto a sx'
+% \begin{tikzpicture}[remember picture, overlay]
+% \node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+%    {\tikz[baseline=(t1.base)]{\node[fill=ta3chameleon](t1){%
+% {\large A}};}
+%     };
+% \end{tikzpicture}
+% %%
+% \begin{itemize}[<+-|alert@+>]
+% \item Generally theories are developed in the frequency/wavevector
+%   domains ($\omega,\mathbf{k}$) rather than in time/space ($t,\mathbf{r}$)
+% \item The reason for that resides principally on the fact that
+%   \emph{Fourier transform} of governing equations allows an easier
+%   treatment of typical mathematical operators
+% \begin{equation*}
+% \frac{\partial}{\partial t} \Longrightarrow i\omega; \qquad
+% \frac{\partial f}{\partial x_i} \Longrightarrow i k_i \hat{f}(\mathbf{k},t)
+% \end{equation*}
+% \end{itemize}
+% \onslide<3>{
+% \begin{block}{}
+% \begin{itemize}
+% \item Some remarks on basic Fourier Transform and its discrete counterpart
+% the Discrete Fourier Transform are mandatory
+% \end{itemize}
+% \end{block}
+% }
+% \end{frame}
 
-\begin{frame}{Continuous and Discrete Fourier transform 2}
+\begin{frame}{Continuous and Discrete Fourier transform}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta3chameleon](t1){%
+{\large A}};}
+    };
+\end{tikzpicture}
+%%
+
 \begin{itemize}[<+->]
 \item The \textcolor{taorange}{Direct} and \textcolor{cyan}{Inverse}
 fourier transform of a generic function of time $x(t)$ is defined as :
@@ -133,8 +158,37 @@ $x_k = \frac{1}{N}\sum_{n=-N/2}^{N/2}X_ne^{2\pi kn/N}$};}
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Aliasing}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta3chameleon](t1){%
+{\large A}};}
+    };
+\end{tikzpicture}
+%%
+
+\begin{itemize}
+\item The presence of frequency higher than the Nyquist frequency may
+  lead to the presence of spurious frequency
+\end{itemize}
+\centering{\includegraphics[height=4cm]{aliasing}}
+\begin{itemize}
+\item A 9 kHz cosine if sampled at 10 kHz exhibits a spurious 1 kHz oscillation
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}{Properties of Fourier transform}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta3chameleon](t1){%
+{\large A}};}
+    };
+\end{tikzpicture}
+%%
+
 \begin{itemize}
 \item Various theorems may be applied to
   FT \parencite{Bracewell:1999ua} among which we cite:
@@ -145,12 +199,6 @@ If $x(t)$ and $g(t)$ have FT respectively equal to $X(f)$ and $G(f)$
 the convolution of the two functions $h(t) = \int_{-\infty}^{+\infty}x(t^{'})g(t-t^{'})\mathrm{d}t^{'}$
 is equal to $X(f)G(f)$
 \end{theorem}
-% \item The importance of the convolution equation resides on the fact that it
-% allows treatment of non-linearities as the term
-% $\mathbf{v}\cdot\nabla\mathbf{v}$ in the Navier-Stokes equations 
-% }
-
-% \only<3>{
 \begin{theorem}{\underline{Rayleigh's Theorem}}
 The integral of squared modulus of a function is equal to the
 integral of the squared modulus of its spectrum, i.e:
@@ -159,56 +207,20 @@ integral of the squared modulus of its spectrum, i.e:
 \int_{-\infty}^{+\infty}|F(f)|^2\mathrm{d}f
 \end{equation*}
 \end{theorem}
-% \item This is equivalent to an energy conservation law for the time or
-% frequency domain representation of the signal
-% }
-% \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Aliasing, leaking and windowing}
-\only<1>{
-\begin{itemize}
-\item The presence of frequency higher than the Nyquist frequency may
-  lead to the presence of spurious frequency
-\end{itemize}
-\centering{\includegraphics[height=4cm]{aliasing}}
-\begin{itemize}
-\item A 9 kHz cosine if sampled at 10 kHz exhibits a spurious 1 kHz oscillation
-\end{itemize}
-}
-
-\only<2>{\small 
-\begin{itemize}
-\item Actually signals are acquired for a limited period
-$T\rightarrow$ equivalent to the convolution with a box
-function $G(t)$ with support $[0,T]$
-\item In the
-  Fourier space this is equivalent to the multiplication with 
-the Fourier representation of a box function $\rightarrow \mathrm{sinc}(x) =
-  \sin(x)/x \Rightarrow$\alert{leaking} some power from
-  one frequency bin to the adjacents ones.
-
-\centering{\includegraphics[height=5cm]{box-function}}
-
-\end{itemize}
-
-}
-
-\only<3>{
-\begin{itemize}
-\item Solution to the leakage: multiplication with an
-  appropriate window function which reduces the lobes as the
-  \emph{Hanning window}: $u_h(t) = \frac{1}{2}(1-\cos(2\pi
-  t/T))$ for $0\leq t\leq T$ and 0 otherwise. 
-
-\centering{\includegraphics[height=5cm]{Hanning}}
-
-\end{itemize}
-}
-\end{frame}
 
 \begin{frame}{Single Point: the autocorrelation function}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
+{\large B}};}
+    };
+\end{tikzpicture}
+%%
+
 \begin{itemize}
 \item A random process $x(t)$ is
   completely described by its moments, i.e. averages over the
@@ -243,6 +255,14 @@ C_j =
 \end{frame}
 
 \begin{frame}{Auto-correlation: practical use}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
+{\large B}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}
 \item Define the \textcolor{ta3chameleon}{\texttt{Auto-correlation time}} of
   a turbulent field such as the potential: $R(\tau_c)=\frac{\text{max}(R(\tau))}{e}$
@@ -255,21 +275,22 @@ C_j =
 \end{frame}
 
 \begin{frame}{Single point: the power spectrum}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
+{\large B}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}[<+->]
 \item The \textcolor{ta3skyblue}{Power spectrum $S(f)$} is defined as the
   Fourier transform of the Autocorrelation-function.
 \item It describes the frequency distribution of the \emph{power of
     the signal.} 
-%i.e.  $E[|x(t)|^2]=\int_{-\infty}^{+\infty}S(f)dt$
 \item It corresponds to the limit of the
   \textcolor{ta3skyblue}{\texttt{periodogram}}  of limited signals $x_T(t)$
  $\frac{E[FT(x_T(t)) ^2]}{T}\xrightarrow[T\rightarrow \infty]{} S(f)$
-% \item Practically, we divide
-%   signals into $M$ slices, assumed as indipendent realization of the
-%   same stochastic process and we compute
-% \begin{equation*}
-% \hat{S}(f) = \frac{1}{M}\sum_{k=1}^{M} S^{(k)}(f) ; \qquad S^{(k)}(f)=\frac{1}{T}|X_T^{(k)}(f)|
-% \end{equation*}
 \item Numerically, the signal is divided into $M$ slices, treated as
   independent realizations, and we compute the power spectral estimator $\hat{S}_n$
  related to the real power spectrum $S(f_n)$ according to
@@ -281,6 +302,14 @@ C_j =
 \end{frame}
 
 \begin{frame}{Power spectrum: practical use}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
+{\large B}};}
+    };
+\end{tikzpicture}
+%%
 \only<1-2>{\begin{columns}[c]
 \begin{column}{.4\textwidth}
 \begin{itemize}
@@ -289,14 +318,14 @@ C_j =
 \end{itemize}
 \end{column}
 \begin{column}{0.6\textwidth}
-\centering{\includegraphics[width=0.73\textwidth]{gam-conway}}
+\centering{\includegraphics[width=0.67\textwidth]{gam-conway}}
 %{\footnotesize G. Conway PPCF }
 \end{column}
 \end{columns}
 }
 \only<2>{\begin{columns}[c]
 \begin{column}{0.6\textwidth}
-\includegraphics[width=6.2cm]{gam-scaling}
+\includegraphics[width=6.cm]{gam-scaling}
 \end{column}
 \begin{column}{0.4\textwidth}
 {\small \begin{itemize}
@@ -309,6 +338,14 @@ C_j =
 }\end{frame}
 
 \begin{frame}{Power spectrum: The spectrogram}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
+{\large B}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}
 {\footnotesize \item The same information can be also analyzed in time applying the
   \textcolor{tascarletred}{\texttt{spectrogram}} technique in the time/frequency
@@ -316,7 +353,7 @@ C_j =
 }
 
 \begin{center}
-\includegraphics[height=5.5cm]{alfven} 
+\includegraphics[height=5.cm]{alfven} 
 \end{center}
 {\footnotesize\item Alfv\'enic nature, with $\omega$ dependent from the
   Alfv\'en velocity $v_A = B/\sqrt{\rho\mu_0}$, revealed by the
@@ -326,7 +363,14 @@ C_j =
 
 
 \begin{frame}{Two-points techniques}
-
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}[<+->]
 \item Spatially distributed measurements allow access to spatial
   structure of the fluctuations
@@ -352,6 +396,14 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \end{frame}
 
 \begin{frame}{Two-points technique}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}[<+->]
 \item In analogy to the power spectrum we define the
   \textcolor{tascarletred}{Cross-power spectrum $S_{XY}(f)$} as the
@@ -375,6 +427,14 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \end{frame}
 
 \begin{frame}{Phase spectrum}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}[<+->]
 \item The method can be applied also in the case of two quantities
   measured on the same location
@@ -393,33 +453,37 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \end{frame}
 
 \begin{frame}{Wave-vector estimate}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}[<+->]
 \item In the case of a reasonably deterministic dispersion relation between $k$ and $f$, the phase may be
   used for the determination of $k$
-% \item Indeed if $k = k(f)$ then $g(t,\overline{r}) =
-%   \int_{-\infty}^{+\infty}G(f)e^{-ik(f)\cdot \overline{r}}e^{i2\pi f}df$
-% \item If measures exhists at two position $g(t,\overline{r}_1)$ and
-%   $g(t,\overline{r}_2)$ separated by $d$ at a given frequency the two signals will be
-%   phase shifted of $\Theta_{12}(f)=k(f)d$ where $\Theta_{12}(f)$ is
-%   computed trough the cross-power spectrum
-\only<3>{\item\textcolor{ta3chameleon}{\texttt{Wave vector}} is
+\item\textcolor{ta3chameleon}{\texttt{Wave vector}} is
   estimated from \textcolor{ta3chameleon}{\texttt{Phase spectrum}}
 \begin{center}
 \includegraphics[height=4cm]{phase-shift}
 \end{center}
-}
-
-\only<4->{
-\item If measurements are displaced in the aximuthal direction,
-  i.e. $d=r_p\Delta\Theta$ then the azimuthal mode number is computed
-  as $m=\Theta_{12}/\Delta\Theta$
-\item \textcolor{tachameleon}{The probe distance $d$ must be less than
+\item \textcolor{tachameleon}{Distance $d$ must be less than
   a wave length, less than a correlation length, but far enough the
-  detect a measurable phase difference}}
+  detect a measurable phase difference}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Fluctuation-induced particle transport}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}
 \item Fluctuations induced particle flux is defined as $\Gamma = E[\tilde{n}(t)\tilde{v}(t)]=E[\tilde{n}(t)\tilde{E}(t)]/B$
 \item According to previous definitions and properties 
@@ -431,13 +495,20 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
   with finite record length $T$, and assuming a deterministic
   dispersion relation 
 \begin{equation*}
-% \Gamma(f) = \frac{2}{BT}\Im\text{m}\{ E[k(f)N(f)\Phi^{*}(f)]\} \\
 \Gamma(f)=\frac{2k(f)}{B}\Im\{S_{n\phi}(f)\} 
 \end{equation*}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Fluctuation-induced particle transport 2}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}
 {\footnotesize
 \item In practice, considering digitized signals we have
@@ -462,7 +533,15 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 
 
 \begin{frame}{More than transport of particles}
-\onslide<1->{\begin{itemize}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
+\begin{itemize}
 \item Similar method may be used for the determination of the
   \emph{Reynolds stress} $\langle\tilde{v}_r\tilde{v}_{\perp}\rangle$
   which play a role in the momentum generation for both Tokamak and
@@ -470,21 +549,22 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
   -\partial_r\langle\tilde{v}_r\tilde{v}_{\phi}\rangle + \ldots$ {\footnotesize
   (see e.g. \parencite{Vianello:2005hf,Vianello:2005dt,Vianello:2006bn})}
 \end{itemize}
-}
-\only<2>{
-\centering{\includegraphics[height=4cm]{ErsFlux}}
-
-}
-\only<3>{
-\centering{\includegraphics[height=4cm]{ErsFlux_vsk}}
-
-}
-
+\begin{center}
+\includegraphics[height=4cm]{ErsFlux_vsk}
+\end{center}
 
 \end{frame}
 
 
 \begin{frame}{The wavenumber-frequency Spectrum}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
 \begin{itemize}[<+->]
 \item For turbulent medium, with different wave
   numbers corresponding to the same frequency we need to compute the \textcolor{tachameleon}{\texttt{Wave
@@ -495,13 +575,6 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 S(k,\omega)
 =\iint_{-\infty}^{+\infty}R(\chi,\tau)e^{-i(\omega\tau-k\chi)}d\chi d\tau
 \end{equation*}
-% \only<4>{\item Again for finite time length $T$ and finite space $L$ we have an
-%   estimate 
-% \begin{gather*}
-% \hat{S}(k,\omega)= \frac{1}{LT}E[G_{LT}(k,\omega)G^{*}_{LT}(k,\omega)]
-% \\
-% \lim_{L,T\rightarrow\infty} \hat{S}(k,\omega) = S(k,\omega)
-% \end{gather*}}
 \item In the two 2 points cases are available, the spectrum is
   reconstructed on a statistical basis considering the $M$ different realizations:
 {\small\begin{gather*}
@@ -520,6 +593,14 @@ I_p[k_n^{j}] =
 \end{frame}
 
 \begin{frame}{Spectral power density}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+{\large C}};}
+    };
+\end{tikzpicture}
+%%
 
 
 \only<1>{
@@ -546,45 +627,48 @@ I_p[k_n^{j}] =
 \end{frame}
 
 \begin{frame}{Beyond Fourier: Wavelet transform}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=tascarletred](t1){%
+{\large D}};}
+    };
+\end{tikzpicture}
+%%
 %\setbeamercovered{transparent=10}
 \begin{itemize}[<+->]
-\item The Fourier decomposition uses trigonometric functions as
-  orthogonal basis
-\item These functions oscillates forever,
-  i.e. the information spreaded 
-\item We need functions localized in time and scales $\Rightarrow$
+\item {\small  The Fourier decomposition uses trigonometric functions as
+  orthogonal basis}
+\item {\small  These functions oscillates forever,
+  i.e. the information spreaded} 
+\item {\small  We need functions localized in time and scales $\Rightarrow$
   \textcolor{tachameleon}{\texttt{Wavelet
       Transform}} {\footnotesize \parencite{Farge:1992un,Mallat:1999te}}.
-
+}
 \begin{center}
 \includegraphics[height=3.5cm]{morlet}
 \end{center}
 
-% \item The admissibility condition
-%   $C_{\psi}=\int_{-\infty}^{+\infty}\frac{|\hat{\psi}(\omega)|^2}{|\omega|}d\omega
-%   < \infty$, implies that the wavelet $\psi$ is a zero mean function
-%   $\int_{\infty}^{\infty}\psi(t)dt =0$
-\item Defining time-frequency atoms as
+\item {\small  Defining time-frequency atoms as
   $\psi_{s,\tau}=\frac{1}{\sqrt{\tau}}\psi\left(\frac{t-s}{\tau}\right)$ the
   \textcolor{tachameleon}{\texttt{Continuous Wavelet Transform}} is
-  defined as 
+  defined as }
 \begin{equation*}
 w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t-s}{\tau}\right)dt
 \end{equation*}
 \end{itemize}
 \end{frame}
-% \begin{frame}{Choice \& type of Wavelet}
-% \begin{itemize}
-% \item Example of different types of wavelet \parencite{Mallat:1999te}
-% \begin{center}
-% \includegraphics[height=7cm]{various_wavelet}
-% \end{center}
-% \end{itemize}
-
-% \end{frame}
-
 
 \begin{frame}{Wavelet application}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=tascarletred](t1){%
+{\large D}};}
+    };
+\end{tikzpicture}
+%%
+
 \begin{itemize}
 \item In analogy to Fourier we can define Wavelet Cross power spectrum
   and Corresponding phase spectrum (well localized in time/frequency)
@@ -602,6 +686,15 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 
 
 \begin{frame}{Wavelet for turbulence analysis}
+%% per aggiungere la lettera colorata con l'argomento in alto a sx'
+\begin{tikzpicture}[remember picture, overlay]
+\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+   {\tikz[baseline=(t1.base)]{\node[fill=tascarletred](t1){%
+{\large D}};}
+    };
+\end{tikzpicture}
+%%
+
 %\setbeamercovered{transparent=10} 
  \begin{itemize}[<+->]
   \item Wavelet coefficients exhibit similar
@@ -628,42 +721,33 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Local Intermittency Measurements}
-  \begin{itemize}
-\item Intermittency is due to the presence of strong, sporadic fluctuations
-\item The \textcolor{ta3chameleon}{\texttt{Local Intermittency
-      Measurements}} is a threshold method, based on wavelet, which identifies \alert{in time and
-  scales} these fluctuations {\footnotesize\parencite{Antoni:2001tm}}
-%   \item The method distinguishes two orthogonal sets :
-% \begin{equation*}
-% \{w(t,\tau)\} = \{w_e(t,\tau)\}\oplus \{w_g(t,\tau)\} \quad
-% \text{with} \;
-% F(\tau)=\frac{\langle w_g(t,\tau)^4\rangle}{[\langle w_g(t,\tau)^2]^2}
-% = 3
-% \end{equation*}
-\item The typical shape of the fluctuations may be derived using
-  \textcolor{ta3chameleon}{\texttt{Conditional Average Procedure}},
-  i.e. averaging different time windows of the signal 
-\only<2>{\item Shape of a typical  \alert{Intermittent Events} or
-  \alert{blobs}
-\begin{center}
-\includegraphics[height=3.6cm]{campo_vortici}
-\end{center}}
-\end{itemize}
-\end{frame}
+% \begin{frame}
+ %  \frametitle{Local Intermittency Measurements}
+% %% per aggiungere la lettera colorata con l'argomento in alto a sx'
+% \begin{tikzpicture}[remember picture, overlay]
+% \node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+%    {\tikz[baseline=(t1.base)]{\node[fill=tascarletred](t1){%
+% {\large D}};}
+%     };
+% \end{tikzpicture}
+% %%
 
-% \begin{frame}{Example of structures}
-% \begin{itemize}
-% \item Conditional average may be applied to different signals using
-%   the same trigger {\footnotesize\parencite{Vianello:2010tv,Martines:2009im}}
-% \end{itemize}
+%   \begin{itemize}
+% \item Intermittency is due to the presence of strong, sporadic fluctuations
+% \item The \textcolor{ta3chameleon}{\texttt{Local Intermittency
+%       Measurements}} is a threshold method, based on wavelet, which identifies \alert{in time and
+%   scales} these fluctuations {\footnotesize\parencite{Antoni:2001tm}}
 
+% \item The typical shape of the fluctuations may be derived using
+%   \textcolor{ta3chameleon}{\texttt{Conditional Average Procedure}},
+%   i.e. averaging different time windows of the signal 
+% \only<2>{\item Shape of a typical  \alert{Intermittent Events} or
+%   \alert{blobs}
 % \begin{center}
-% \includegraphics[height=7.1cm]{strutturaMediaConVpNuova}
-% \end{center}
+% \includegraphics[height=3.6cm]{campo_vortici}
+% \end{center}}
+% \end{itemize}
 % \end{frame}
-
 
 
 \begin{frame}{Summary}
