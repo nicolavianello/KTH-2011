@@ -49,7 +49,7 @@
 
 \title{Fluctuation data analysis in Fusion Relevant Plasmas}
 \author{N. Vianello }
-\date{22 June 2011}
+%\date{22 June 2011}
 
 \begin{document}
 
@@ -81,36 +81,7 @@ Diagnostics provides information with different time and spatial resolution
 \end{center}}
 \end{frame}
 
-% \begin{frame}
-% \frametitle{ The needs for the Fourier transform}
-% %% per aggiungere la lettera colorata con l'argomento in alto a sx'
-% \begin{tikzpicture}[remember picture, overlay]
-% \node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
-%    {\tikz[baseline=(t1.base)]{\node[fill=ta3chameleon](t1){%
-% {\large A}};}
-%     };
-% \end{tikzpicture}
-% %%
-% \begin{itemize}[<+-|alert@+>]
-% \item Generally theories are developed in the frequency/wavevector
-%   domains ($\omega,\mathbf{k}$) rather than in time/space ($t,\mathbf{r}$)
-% \item The reason for that resides principally on the fact that
-%   \emph{Fourier transform} of governing equations allows an easier
-%   treatment of typical mathematical operators
-% \begin{equation*}
-% \frac{\partial}{\partial t} \Longrightarrow i\omega; \qquad
-% \frac{\partial f}{\partial x_i} \Longrightarrow i k_i \hat{f}(\mathbf{k},t)
-% \end{equation*}
-% \end{itemize}
-% \onslide<3>{
-% \begin{block}{}
-% \begin{itemize}
-% \item Some remarks on basic Fourier Transform and its discrete counterpart
-% the Discrete Fourier Transform are mandatory
-% \end{itemize}
-% \end{block}
-% }
-% \end{frame}
+
 
 \begin{frame}{Continuous and Discrete Fourier transform}
 %% per aggiungere la lettera colorata con l'argomento in alto a sx'
@@ -337,29 +308,7 @@ C_j =
 \end{columns}
 }\end{frame}
 
-\begin{frame}{Power spectrum: The spectrogram}
-%% per aggiungere la lettera colorata con l'argomento in alto a sx'
-\begin{tikzpicture}[remember picture, overlay]
-\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
-   {\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
-{\large B}};}
-    };
-\end{tikzpicture}
-%%
-\begin{itemize}
-{\footnotesize \item The same information can be also analyzed in time applying the
-  \textcolor{tascarletred}{\texttt{spectrogram}} technique in the time/frequency
-  space {\footnotesize \parencite{spagnolo}}
-}
 
-\begin{center}
-\includegraphics[height=5.cm]{alfven} 
-\end{center}
-{\footnotesize\item Alfv\'enic nature, with $\omega$ dependent from the
-  Alfv\'en velocity $v_A = B/\sqrt{\rho\mu_0}$, revealed by the
-  comparison with the plasma density
-}\end{itemize}
-\end{frame}
 
 
 \begin{frame}{Two-points techniques}
@@ -556,75 +505,6 @@ C_{yx,j}=\frac{1}{N}\sum_{i=j}^{N-1}(y_i-\overline{y})(x_{i-j}-\overline{x})
 \end{frame}
 
 
-\begin{frame}{The wavenumber-frequency Spectrum}
-%% per aggiungere la lettera colorata con l'argomento in alto a sx'
-\begin{tikzpicture}[remember picture, overlay]
-\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
-   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
-{\large C}};}
-    };
-\end{tikzpicture}
-%%
-\begin{itemize}[<+->]
-\item For turbulent medium, with different wave
-  numbers corresponding to the same frequency we need to compute the \textcolor{tachameleon}{\texttt{Wave
-      number-frequency power spectrum $S(k,\omega)$}}
-\item This is equivalent to the Fourier transform of the space time
-  correlation function $R(\chi,\tau)$
-\begin{equation*}
-S(k,\omega)
-=\iint_{-\infty}^{+\infty}R(\chi,\tau)e^{-i(\omega\tau-k\chi)}d\chi d\tau
-\end{equation*}
-\item In the two 2 points cases are available, the spectrum is
-  reconstructed on a statistical basis considering the $M$ different realizations:
-{\small\begin{gather*}
-\hat{S}_L(k,\omega)=\hat{S}_L(p\Delta k,2\pi n \Delta
-f)=\frac{1}{M}\sum_{j=1}^M S_n^{(j)}I_p[k_n^{j}] \\ 
-I_p[k_n^{j}] = 
-\begin{cases}
-1 \;\text{for}\; (p-1/2)\Delta k < k_n^{(j)}< (p+1/2)\Delta k \\
-0 \;\text{elsewhere}
-\end{cases}
-\end{gather*}}
-
-
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Spectral power density}
-%% per aggiungere la lettera colorata con l'argomento in alto a sx'
-\begin{tikzpicture}[remember picture, overlay]
-\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
-   {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
-{\large C}};}
-    };
-\end{tikzpicture}
-%%
-
-
-\only<1>{
-\begin{itemize}
-\item Spectral power density from GPI LoS on NSTX {\footnotesize\parencite{Agostini:2007kx}}
-
-\vspace{1cm}
-
-\centering{\includegraphics[height=4.5cm]{skf}}
-\end{itemize}
-}
-
-\only<2>{
-\begin{itemize}
-\item We can consequently compute
-  $S(k)=\int_{-\infty}^{+\infty}S(k,\omega)\frac{d\omega}{2\pi}$
-
-\vspace{1cm}
-
-\centering{\includegraphics[height=4.5cm]{sk}}
-
-\end{itemize}
-}
-\end{frame}
 
 \begin{frame}{Beyond Fourier: Wavelet transform}
 %% per aggiungere la lettera colorata con l'argomento in alto a sx'
@@ -685,41 +565,188 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 \end{frame}
 
 
-\begin{frame}{Wavelet for turbulence analysis}
-%% per aggiungere la lettera colorata con l'argomento in alto a sx'
-\begin{tikzpicture}[remember picture, overlay]
-\node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
-   {\tikz[baseline=(t1.base)]{\node[fill=tascarletred](t1){%
-{\large D}};}
-    };
-\end{tikzpicture}
-%%
 
-%\setbeamercovered{transparent=10} 
- \begin{itemize}[<+->]
-  \item Wavelet coefficients exhibit similar
-    scaling properties as the fluctuations of the signals at the same
-\begin{equation*}
-\delta_{\tau} f = f(t+\tau)-f(t) \sim \tau^h \Rightarrow |w(t,\tau)|\sim\tau^{h+1/2}
-\end{equation*}
-% \item Thus wavelet coefficients may be used for the study of the
-%   scaling properties of the fluctuation
-\item Easy way to compute the
-  \textcolor{tachameleon}{\texttt{Probability Distribution Function}}
-  of normalized flutuations $C(t,\tau)=\frac{w(t,\tau)-\langle
-    w(t,\tau)\rangle}{\sigma_{\tau}}$. For
-  \textcolor{taskyblue}{self-similar} fluctuations, these should
-  collapse to a single form
 
-\item \textcolor{tascarletred}{\textbf{Revealing non
-      self-similariy i.e. Intermittency}}
-
-\begin{center}
-\includegraphics[height=3.7cm]{pdf_fluct}
-\end{center}
-
+\begin{frame}{Summary}
+\begin{itemize}
+{\large\item High temporal and spatial resolution are needed for better
+  characterization of the plasma. But two points still gives a bunch
+  of information
+\item Fourier transform allows estimate of quantities directly
+  comparable with theories
+\item Often localized events (in space or time) require more
+  sophisticated tools which maintain the locality of the information
+\item As much as possible correlation between different diagnostics
+  are generally needed for an appropriate comprehension}
 \end{itemize}
+
 \end{frame}
+\begin{frame}[allowframebreaks]{Bibliography}
+\printbibliography
+\end{frame}
+
+\end{document}
+
+
+% \begin{frame}
+% \frametitle{ The needs for the Fourier transform}
+% %% per aggiungere la lettera colorata con l'argomento in alto a sx'
+% \begin{tikzpicture}[remember picture, overlay]
+% \node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+%    {\tikz[baseline=(t1.base)]{\node[fill=ta3chameleon](t1){%
+% {\large A}};}
+%     };
+% \end{tikzpicture}
+% %%
+% \begin{itemize}[<+-|alert@+>]
+% \item Generally theories are developed in the frequency/wavevector
+%   domains ($\omega,\mathbf{k}$) rather than in time/space ($t,\mathbf{r}$)
+% \item The reason for that resides principally on the fact that
+%   \emph{Fourier transform} of governing equations allows an easier
+%   treatment of typical mathematical operators
+% \begin{equation*}
+% \frac{\partial}{\partial t} \Longrightarrow i\omega; \qquad
+% \frac{\partial f}{\partial x_i} \Longrightarrow i k_i \hat{f}(\mathbf{k},t)
+% \end{equation*}
+% \end{itemize}
+% \onslide<3>{
+% \begin{block}{}
+% \begin{itemize}
+% \item Some remarks on basic Fourier Transform and its discrete counterpart
+% the Discrete Fourier Transform are mandatory
+% \end{itemize}
+% \end{block}
+% }
+% \end{frame}
+
+
+% \begin{frame}{Power spectrum: The spectrogram}
+% %% per aggiungere la lettera colorata con l'argomento in alto a sx'
+% \begin{tikzpicture}[remember picture, overlay]
+% \node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+%    {\tikz[baseline=(t1.base)]{\node[fill=taorange](t1){%
+% {\large B}};}
+%     };
+% \end{tikzpicture}
+% %%
+% \begin{itemize}
+% {\footnotesize \item The same information can be also analyzed in time applying the
+%   \textcolor{tascarletred}{\texttt{spectrogram}} technique in the time/frequency
+%   space {\footnotesize \parencite{spagnolo}}
+% }
+% \begin{center}
+% \includegraphics[height=5.cm]{alfven} 
+% \end{center}
+% {\footnotesize\item Alfv\'enic nature, with $\omega$ dependent from the
+%   Alfv\'en velocity $v_A = B/\sqrt{\rho\mu_0}$, revealed by the
+%   comparison with the plasma density
+% }\end{itemize}
+% \end{frame}
+
+
+% \begin{frame}{The wavenumber-frequency Spectrum}
+% %% per aggiungere la lettera colorata con l'argomento in alto a sx'
+% \begin{tikzpicture}[remember picture, overlay]
+% \node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+%    {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+% {\large C}};}
+%     };
+% \end{tikzpicture}
+% %%
+% \begin{itemize}[<+->]
+% \item For turbulent medium, with different wave
+%   numbers corresponding to the same frequency we need to compute the \textcolor{tachameleon}{\texttt{Wave
+%       number-frequency power spectrum $S(k,\omega)$}}
+% \item This is equivalent to the Fourier transform of the space time
+%   correlation function $R(\chi,\tau)$
+% \begin{equation*}
+% S(k,\omega)
+% =\iint_{-\infty}^{+\infty}R(\chi,\tau)e^{-i(\omega\tau-k\chi)}d\chi d\tau
+% \end{equation*}
+% \item In the two 2 points cases are available, the spectrum is
+%   reconstructed on a statistical basis considering the $M$ different realizations:
+% {\small\begin{gather*}
+% \hat{S}_L(k,\omega)=\hat{S}_L(p\Delta k,2\pi n \Delta
+% f)=\frac{1}{M}\sum_{j=1}^M S_n^{(j)}I_p[k_n^{j}] \\ 
+% I_p[k_n^{j}] = 
+% \begin{cases}
+% 1 \;\text{for}\; (p-1/2)\Delta k < k_n^{(j)}< (p+1/2)\Delta k \\
+% 0 \;\text{elsewhere}
+% \end{cases}
+% \end{gather*}}
+
+
+% \end{itemize}
+
+% \end{frame}
+
+% \begin{frame}{Spectral power density}
+% %% per aggiungere la lettera colorata con l'argomento in alto a sx'
+% \begin{tikzpicture}[remember picture, overlay]
+% \node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+%    {\tikz[baseline=(t1.base)]{\node[fill=ta2skyblue](t1){%
+% {\large C}};}
+%     };
+% \end{tikzpicture}
+% %%
+
+
+% \only<1>{
+% \begin{itemize}
+% \item Spectral power density from GPI LoS on NSTX {\footnotesize\parencite{Agostini:2007kx}}
+
+% \vspace{1cm}
+
+% \centering{\includegraphics[height=4.5cm]{skf}}
+% \end{itemize}
+% }
+
+% \only<2>{
+% \begin{itemize}
+% \item We can consequently compute
+%   $S(k)=\int_{-\infty}^{+\infty}S(k,\omega)\frac{d\omega}{2\pi}$
+
+% \vspace{1cm}
+
+% \centering{\includegraphics[height=4.5cm]{sk}}
+
+% \end{itemize}
+% }
+% \end{frame}
+
+
+
+% \begin{frame}{Wavelet for turbulence analysis}
+% %% per aggiungere la lettera colorata con l'argomento in alto a sx'
+% \begin{tikzpicture}[remember picture, overlay]
+% \node [shift={(-0.779 cm,-0.3cm)}]  at (current page.north east)
+%    {\tikz[baseline=(t1.base)]{\node[fill=tascarletred](t1){%
+% {\large D}};}
+%     };
+% \end{tikzpicture}
+% %%
+% %\setbeamercovered{transparent=10} 
+%  \begin{itemize}[<+->]
+%   \item Wavelet coefficients exhibit similar
+%     scaling properties as the fluctuations of the signals at the same
+% \begin{equation*}
+% \delta_{\tau} f = f(t+\tau)-f(t) \sim \tau^h \Rightarrow |w(t,\tau)|\sim\tau^{h+1/2}
+% \end{equation*}
+% % \item Thus wavelet coefficients may be used for the study of the
+% %   scaling properties of the fluctuation
+% \item Easy way to compute the
+%   \textcolor{tachameleon}{\texttt{Probability Distribution Function}}
+%   of normalized flutuations $C(t,\tau)=\frac{w(t,\tau)-\langle
+%     w(t,\tau)\rangle}{\sigma_{\tau}}$. For
+%   \textcolor{taskyblue}{self-similar} fluctuations, these should
+%   collapse to a single form
+% \item \textcolor{tascarletred}{\textbf{Revealing non
+%       self-similariy i.e. Intermittency}}
+% \begin{center}
+% \includegraphics[height=3.7cm]{pdf_fluct}
+% \end{center}
+% \end{itemize}
+% \end{frame}
 
 % \begin{frame}
  %  \frametitle{Local Intermittency Measurements}
@@ -748,24 +775,3 @@ w(s,\tau)=\frac{1}{\sqrt{\tau}}\int_{-\infty}^{+\infty}f(t)\psi^{*}\left(\frac{t
 % \end{center}}
 % \end{itemize}
 % \end{frame}
-
-
-\begin{frame}{Summary}
-\begin{itemize}
-{\large\item High temporal and spatial resolution are needed for better
-  characterization of the plasma. But two points still gives a bunch
-  of information
-\item Fourier transform allows estimate of quantities directly
-  comparable with theories
-\item Often localized events (in space or time) require more
-  sophisticated tools which maintain the locality of the information
-\item As much as possible correlation between different diagnostics
-  are generally needed for an appropriate comprehension}
-\end{itemize}
-
-\end{frame}
-\begin{frame}[allowframebreaks]{Bibliography}
-\printbibliography
-\end{frame}
-
-\end{document}
