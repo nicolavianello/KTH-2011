@@ -307,14 +307,19 @@
 
 *** Outline
    1. Personal research interest [1 Slides]
-      1) Personal interest in turbulence in magnetized plasmas with emphasis in Fusion Plasma 
-      2) I've been involved in the studies of electromagnetic turbulence, using primarly local measurement (probes both magnetic and eletrostatic)
-      3) Active collaboration with a wider community (including astrophysical & basic plasmas) in order to share tools for the analysis and underlying physics
-   2. Issue: Electrostatic induced Particle Flux [1 Slides]
-      1) Particle flux induced by electrostatic fluctuations, and modification induced by applied shear
+      1) Turbulence & Flows in magnetized plasma
+      2) Statistical characterization of electromagnetic turbulence
+         and of emerging coherent structures
+      3) Spontaneously developed Helical plasmas
+   2. Issue:Turbulence & Flows [2 Slides]
+      1) Role of electrostatic fluctuations in driving perpendicular
+         flow at the edge of an RFP (PRL/NF/PPCF)
+      2) Transport reduction induced by active modification of sheared
+         flow (PPCF)
    3. Issue: Turbulence/Intermittency & lack of Self-similarity [2 Slides ]
-      1) Evidence of intermittency observed as lack-of-self-similarity
-      2) Inconsistency with SOC processes
+      1) Evidence of intermittency observed as
+         lack-of-self-similarity + memory processes through laminar times
+      2) Inconsistency with SOC processes (2 PRL)
    4. Issue: Coherent structures & filaments [2 Slides]
       1) Transport induced by coherent structures
       2) Filaments in 3 machines plus planned experiment
@@ -337,3 +342,7 @@
 
 
 
+
+*** Nota
+    - i dati per il plot dell'elettrodo devono essere letti cosi 
+      | Flux | dFlux | k | dk | flux El | dFlux El | k El | dk El |
